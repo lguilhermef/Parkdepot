@@ -1,24 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Login} from './Authentication/Login';
 
-function App() {
+interface User {
+  email: string,
+  password: string
+}
+
+
+const App: React.FC = () => {
+
+  const [currentUser, setCurrentUser] = useState<User>();
+
+  const login: Function = (user: User) => {
+    
+    if (user.email) {
+      setCurrentUser(user);
+      return;
+    }
+
+    console.log("Login: NOT WORKING!")
+
+  } 
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {currentUser ? (
+        <div>
+          {currentUser.email}
+        </div>
+      
+      ) : (
+
+        <Login login={login}/>
+
+      )}
     </div>
   );
 }
