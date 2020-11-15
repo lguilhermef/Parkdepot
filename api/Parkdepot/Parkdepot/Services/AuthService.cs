@@ -1,4 +1,5 @@
 ﻿using Parkdepot.Models.DAL;
+using Parkdepot.Models.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,19 @@ namespace Parkdepot.Services
         public AuthService()
         {
             this._authRepository = new AuthRepository();
+        }
+
+        public ParkdepotUser login (string email, string password)
+        {
+            ParkdepotUser user = _authRepository.getUser(email);
+            bool isPassCorrect = false;
+
+            if (user != null)
+            {
+                isPassCorrect = verify(password, user.Pass);
+            }
+
+            return isPassCorrect ? user : null;
         }
 
        
