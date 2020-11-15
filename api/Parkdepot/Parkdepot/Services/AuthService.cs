@@ -33,6 +33,19 @@ namespace Parkdepot.Services
             return isPassCorrect ? user : null;
         }
 
+        public ParkdepotUser registerUser(ParkdepotUser newUser)
+        {
+            ParkdepotUser persistedUser = _authRepository.getUser(newUser.Email);
+
+            if (persistedUser == null)
+            {
+                return null;
+            }
+
+            newUser.Pass = hash(newUser.Pass);
+            return _authRepository.registerUser(newUser);
+        }
+
        
 
         //TODO: This should be a separate class. It's an utility service

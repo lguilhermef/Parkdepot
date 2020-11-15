@@ -20,5 +20,13 @@ namespace Parkdepot.Models.DAL
         {
             return dbContext.ParkdepotUser.Where(u => u.Email == email).FirstOrDefault();
         }
+
+        public ParkdepotUser registerUser(ParkdepotUser newUser)
+        {
+            dbContext.Add(newUser);
+            dbContext.SaveChanges();
+
+            return getUser(newUser.Email);
+        }
     }
 }

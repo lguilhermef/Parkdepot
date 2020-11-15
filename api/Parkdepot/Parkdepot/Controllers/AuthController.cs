@@ -47,5 +47,12 @@ namespace Parkdepot.Controllers
                 token = userToken
             });
         }
+
+        [HttpPost("register-user")]
+        public IActionResult registerUser([FromBody] ParkdepotUser newUser)
+        {
+            ParkdepotUser persistedUser = authService.registerUser(newUser);
+            return Ok(persistedUser);
+        }
     }
 }
