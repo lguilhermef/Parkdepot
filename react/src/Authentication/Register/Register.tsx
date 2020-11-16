@@ -6,7 +6,7 @@ import { JsxElement, JsxEmit } from 'typescript';
 const postURL = "https://localhost:44376/api/auth/register-user";
 
 interface Props {
-    login: Function
+    //login: Function
 }
 
 interface NewUser {
@@ -15,9 +15,9 @@ interface NewUser {
     pass: string
 }
 
-export const Register: React.FC<Props> = (props): JSX.Element => {
+export const Register: React.FC<Props> = (props) => {
 
-    const {login} = props;
+    //const {login} = props;
 
     const [email, setEmail] = useState<string>("");
     const [username, setUsername] = useState<string>("");
@@ -39,7 +39,7 @@ export const Register: React.FC<Props> = (props): JSX.Element => {
             data: newUser
           }).then(resp => {
               if (resp.data) {
-                  login(resp.data);
+                  //login(resp.data);
               };
         })
     };

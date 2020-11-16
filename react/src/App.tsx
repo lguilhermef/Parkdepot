@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Login} from './Authentication/Login/Login';
-import {Authentication} from './Authentication/Authentication'
+import {Authentication, getCurrentUser} from './Authentication/Authentication'
+import {Dashboard} from './Views/Dashboard/Dashboard'
+import { User, Permission } from './Types/Types'
 
-interface User {
-  email: string,
-  permission: Permission
-};
-
-interface Permission {
-  name: string,
-  level: number,
-  description: string
-};
-
-
-const App: React.FC = () => {
+export const App: React.FC = () => {
 
   const [currentUser, setCurrentUser] = useState<User>();
 
-  const login: Function = (user: User): void => {
+  useEffect(() => {
+
+    const user: User = getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+    }
+
+  }, [currentUser]);
+
+  /*const login = (user: User): void => {
     
     if (user.email) {
       setCurrentUser(user);
@@ -28,24 +26,22 @@ const App: React.FC = () => {
     }
  
     console.log("Login: NOT WORKING!")
-
-  }; 
+  }; */
 
   return (
     <div className="App">
       {currentUser ? (
 
         <div>
-          {currentUser.email}
+          <Dashboard/>
+          
         </div>
       
       ) : (
-
-        <Authentication login={login}/>
+        //<Authentication login={login}/>
+        <Authentication/>
 
       )}
     </div>
   );
 };
-
-export default App;

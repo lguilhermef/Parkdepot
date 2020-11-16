@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 import axios, { AxiosResponse } from 'axios'
+import {LoginData} from '../../Types/Types'
 
 const loginURL = "https://localhost:44376/api/auth/login"
 
@@ -9,16 +10,11 @@ interface Props {
     setLoginview: Function
 };
 
-interface LoginData {
-    email: string,
-    pass: string
-}
-
 //chrome: session storage;
 //passar de componente em compnente, component drilling;
 
 
-export const Login: React.FC<Props> = ({login, setLoginview}) => {
+export const Login: React.FC<Props> = ({setLoginview, login}) => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -29,16 +25,7 @@ export const Login: React.FC<Props> = ({login, setLoginview}) => {
     }
  
     const submitLogin: Function = () => {
-
-        axios({
-            method: "post",
-            url: loginURL,
-            data: loginData
-          }).then((resp: AxiosResponse) => {
-              if (resp.data) {
-                  login(resp.data.user);
-              }
-        });
+        login(loginData);
     }
 
     return (
