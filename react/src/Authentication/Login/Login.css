@@ -16,3 +16,24 @@
     display: inline-block;
     width: 100%;
 }
+
+.linkBtn {
+    float: right;
+    margin-top: 4rem;
+    margin-right: 1rem;
+    bottom: 0rem;
+    transition: .4s ease-in-out;
+}
+
+.linkBtn:hover {
+    cursor:pointer;
+    color: rgba(56, 103, 214, 1);
+}
+
+.cardTitle {
+    margin-bottom: 5rem;
+}
+
+.btnContainer {
+    margin-top: 1rem;
+}

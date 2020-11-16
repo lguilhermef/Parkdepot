@@ -9082,6 +9082,11 @@ react-scripts@4.0.0:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react.dom@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react.dom/-/react.dom-1.0.1.tgz#f0083fd8d7b91a58475cfe4901f7e7f2ec42b3c4"
+  integrity sha1-8Ag/2Ne5GlhHXP5JAffn8uxCs8Q=
+
 react@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"

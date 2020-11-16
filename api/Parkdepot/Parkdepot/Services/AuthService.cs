@@ -37,7 +37,7 @@ namespace Parkdepot.Services
         {
             ParkdepotUser persistedUser = _authRepository.getUser(newUser.Email);
 
-            if (persistedUser == null)
+            if (persistedUser != null)
             {
                 return null;
             }

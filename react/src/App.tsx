@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Login} from './Authentication/Login';
+import {Login} from './Authentication/Login/Login';
+import {Authentication} from './Authentication/Authentication'
 
 interface User {
   email: string,
-  password: string,
   permission: Permission
 };
 
@@ -26,7 +26,7 @@ const App: React.FC = () => {
       setCurrentUser(user);
       return;
     }
-
+ 
     console.log("Login: NOT WORKING!")
 
   }; 
@@ -34,13 +34,14 @@ const App: React.FC = () => {
   return (
     <div className="App">
       {currentUser ? (
+
         <div>
           {currentUser.email}
         </div>
       
       ) : (
 
-        <Login login={login}/>
+        <Authentication login={login}/>
 
       )}
     </div>

@@ -18,6 +18,11 @@ input {
   height: 1.5rem;
   width: 15rem;
   font-size: 1rem;
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
 }
 
 button {
@@ -30,15 +35,24 @@ button {
   border: 0px;
   font-size: 1rem;
   color: white;
-  transition: .4s ease-in-out, transform 1s;
+  transition: .35s ease-out, transform 1s;
 }
 
 button:hover {
+
   background-position: 100% 0%;
   color: rgba(56, 103, 214, 1);
   border: solid 1px rgba(56, 103, 214, 1);
   box-shadow: 0rem .1rem .15rem .1rem rgba(0, 0, 0, 0.18);
+  cursor:pointer;
+}
 
+button:focus {
+  outline: none;
+}
+
+button:active{
+  box-shadow: 0rem 0rem 0rem 0rem rgba(0, 0, 0, 0.18);
 }
 
 @media (prefers-reduced-motion: no-preference) {
