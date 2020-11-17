@@ -4,10 +4,13 @@ export interface LoginData {
 };
 
 export interface User {
-    email: string,
-    username: string,
-    permission: string,
-    jwtToken: string
+
+    user: {
+        email: string,
+        username: string,
+        permission: string,
+        jwtToken: string
+    }
 };
 
 export interface Permission {

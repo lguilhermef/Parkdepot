@@ -38,13 +38,13 @@ namespace Parkdepot.Controllers
             {
                 Email = loggedUser.Email,
                 Username = loggedUser.Username,
-                Permission = loggedUser.Permission
+                Permission = loggedUser.Permission,
+                JwtToken = userToken
             };
 
             return Ok(new
             {
                 user = userDTO,
-                token = userToken
             });
         }
 
