@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { HashRouter } from 'react-router-dom'
 import './App.css';
 import {Authentication, getCurrentUser} from './Authentication/Authentication'
 import {Dashboard} from './Views/Dashboard/Dashboard'
@@ -19,8 +20,10 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="App">
-      {currentUser ? (<Dashboard/>) : (<Authentication/>)}
-    </div>
+    <HashRouter>
+      <div className="App">
+        {currentUser ? (<Dashboard/>) : (<Authentication/>)}
+      </div>
+    </HashRouter>
   );
 };
