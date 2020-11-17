@@ -21,3 +21,9 @@ export interface Permission {
     level: number,
     description: string
 };
+
+export interface WhitelistRecord {
+    plateLicense: string,
+    parkingRestrictionName: string,
+    plateOwner: string
+}

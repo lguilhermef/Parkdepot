@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Parkdepot.Models.DB
 {
-    public partial class WhiteList
+    public partial class WhitelistRecord
     {
         public string PlateLicense { get; set; }
         public string ParkingRestrictionName { get; set; }

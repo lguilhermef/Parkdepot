@@ -18,7 +18,7 @@ namespace Parkdepot.Models.DB
         public virtual DbSet<ParkdepotUser> ParkdepotUser { get; set; }
         public virtual DbSet<ParkingRestriction> ParkingRestriction { get; set; }
         public virtual DbSet<UserPermission> UserPermission { get; set; }
-        public virtual DbSet<WhiteList> WhiteList { get; set; }
+        public virtual DbSet<WhitelistRecord> WhitelistRecord { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -87,7 +87,7 @@ namespace Parkdepot.Models.DB
                 entity.Property(e => e.PermLevel).HasColumnName("perm_level");
             });
 
-            modelBuilder.Entity<WhiteList>(entity =>
+            modelBuilder.Entity<WhitelistRecord>(entity =>
             {
                 entity.HasKey(e => e.PlateLicense);
 
@@ -106,9 +106,9 @@ namespace Parkdepot.Models.DB
                     .HasMaxLength(100);
 
                 entity.HasOne(d => d.ParkingRestrictionNameNavigation)
-                    .WithMany(p => p.WhiteList)
+                    .WithMany(p => p.WhitelistRecord)
                     .HasForeignKey(d => d.ParkingRestrictionName)
-                    .HasConstraintName("FK__WhiteList__parki__693CA210");
+                    .HasConstraintName("FK__Whitelist__parki__6C190EBB");
             });
         }
     }
