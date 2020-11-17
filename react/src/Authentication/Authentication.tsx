@@ -29,8 +29,6 @@ export const Authentication = () => {
     };
 
     return (
-        <div>
-            {showLoginview ? (<Login setLoginview={handleChange}/>) : (<Register/>)}
-        </div>
+        showLoginview ? <Login setLoginview={handleChange}/> : <Register/>
     );
 }

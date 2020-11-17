@@ -13,25 +13,24 @@ export const Dashboard = () => {
     const currentUser: User = getCurrentUser();
 
     return (
-        <div>
+        <div className="dashboardContainer">
             <div className="header">
-            <Link to={"/whitelist"}>
-                <button>Whitelist</button>
-            </Link>
-            
-            <Link to={"/new-plate"}>
-                <button>New Plate</button>
-            </Link>
-{/* 
-            <Link to={"/user-manager"}>
-                <button>Manage Users</button>
-            </Link>*/}
-            
-            <button onClick={() => logout()}>Logout</button>
-        </div>
+                <Link to={"/whitelist"}>
+                    <button>Whitelist</button>
+                </Link>
+                
+                <Link to={"/new-plate"}>
+                    <button>Insert Record</button>
+                </Link>
+    {/* 
+                <Link to={"/user-manager"}>
+                    <button>Manage Users</button>
+                </Link>*/}
+                <span className="cardTitle">Logged as <strong>{currentUser.username}</strong>!</span>
+                <button onClick={() => logout()}>Logout</button>
+            </div>
 
-            <div className="card">
-                <h1 className="cardTitle">Welcome {currentUser.username}!</h1>
+            <div className="formContainer">
                 <Switch>
                     <Route path="/whitelist" component={() => <Whitelist/>} />
                     <Route path="/new-plate" component={() => <WhitelistNewRecord/>} />

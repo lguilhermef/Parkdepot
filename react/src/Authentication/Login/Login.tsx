@@ -4,6 +4,7 @@ import {LoginData} from '../../Types/Types'
 import { LOGIN_URL } from '../../Constants/Constants'
 import axios, { AxiosResponse } from 'axios'
 import { setCurrentUser } from '../Authentication'
+import Logo from '../../Assets/park-icon.png'
 
 interface Props {
     setLoginview: Function
@@ -41,18 +42,22 @@ export const Login = ({setLoginview} : Props) => {
     }
 
     return (
-        <div className="login">
-            <h1 className="cardTitle">Login</h1>
-            <h3 className="label">Email</h3>
-            <input type="email" onChange={event => setEmail(event.target.value)}></input>
-            <h3 className="label">Pass</h3>
-            <input type="password" onChange={event => setPassword(event.target.value)}></input>
-               
-            <div className="btnContainer">
-                <button onClick={() => loginUser(loginData)}>Login</button>
+        <div>
+            <div className="header">
+                <img className="headerLogo" src={Logo}></img><span className="logoLabel">Conceptual App</span>
             </div>
 
-            <span className="linkBtn" onClick={() => setLoginview(false)}>Register</span>
+            <div className="formContainer">
+                <div className="form">
+                    <h1 className="cardTitle">Login</h1>
+                    <input type="email" placeholder="Email" onChange={event => setEmail(event.target.value)}></input>
+                    <input type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}></input>
+                    <div className="btnContainer">
+                        <button onClick={() => loginUser(loginData)}>Login</button>
+                    </div>
+                    <span className="linkBtn" onClick={() => setLoginview(false)}>Register</span>
+                </div>
+            </div>
         </div>
     )
 }

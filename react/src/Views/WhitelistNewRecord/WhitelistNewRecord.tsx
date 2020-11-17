@@ -31,23 +31,20 @@ export const WhitelistNewRecord = () => {
 
     
     return (
-        <div>
+        <div className="form">
             <div>
                 <h1>Whitelist Entry</h1>
             
                 <div className="rowDiv">
-                    <h3 className="label">Plate License</h3>
-                    <input className="newRecordForm" type="text" onChange={event => setPlateLicense(event.target.value)}></input>
+                    <input className="newRecordForm" placeholder="Plate License" type="text" onChange={event => setPlateLicense(event.target.value)}></input>
                 </div>
 
                 <div className="rowDiv">
-                    <h3 className="label">Permision Type</h3>
-                    <input className="newRecordForm" type="text" onChange={event => setParkingReistrictionName(event.target.value)}></input>
+                    <input className="newRecordForm" placeholder="Permision Type" type="text" onChange={event => setParkingReistrictionName(event.target.value)}></input>
                 </div>
 
                 <div className="rowDiv">
-                    <h3 className="label">Plate Owner</h3>
-                    <input className="newRecordForm" type="text" onChange={event => setPlateOwner(event.target.value)}></input>
+                    <input className="newRecordForm" placeholder="Plate Owner" type="text" onChange={event => setPlateOwner(event.target.value)}></input>
                 </div>
             </div>
 

@@ -1,15 +1,27 @@
-.login {
-    background-color: white;
-    color: rgba(51,51,51);
-    border: solid 2px rgb(38, 75, 160);
+.formContainer {
+    background-color:  rgba(56, 103, 214, 1);
+    color: white;
     box-shadow: 0rem .2rem 2rem .8rem rgba(0, 0, 0, 0.25);
-
     text-align: center;
-    margin: auto;
-    margin-top: 10vh;
-    width: 25rem;
+    width: 100vw;
     height: 30rem;
-    border-radius: 1.5rem;
+}
+
+.form {
+    padding-top: 5rem;
+    width: 50%;
+    margin: auto;
+}
+
+.headerLogo{
+    max-width: 2.5vw;
+    max-height: 5vh;
+}
+
+.logoLabel{
+    margin-left: .5rem;
+    font-weight: 700;
+    color: rgba(48, 48, 48, 1);
 }
 
 .label {
@@ -31,7 +43,8 @@
 }
 
 .cardTitle {
-    margin-bottom: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .btnContainer {

@@ -1,10 +1,9 @@
 .rowDiv{
     display: inline-block;
-    width: 45vw;
-    text-align: left;
+    width: 50vw;
+    text-align: center;
 }
 
 .newRecordForm{
     position: relative;
-
 }

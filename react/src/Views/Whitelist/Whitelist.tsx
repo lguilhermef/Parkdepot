@@ -32,7 +32,7 @@ export const Whitelist = () => {
     }
 
     return (
-        <div>
+        <div className="form">
             <h1>Whitelist</h1>
             {renderList()}
         </div>
