@@ -100,6 +100,11 @@ namespace Parkdepot.Models.DB
                     .HasColumnName("parking_restriction_name")
                     .HasMaxLength(20);
 
+                entity.Property(e => e.PlateOwner)
+                    .IsRequired()
+                    .HasColumnName("plate_owner")
+                    .HasMaxLength(100);
+
                 entity.HasOne(d => d.ParkingRestrictionNameNavigation)
                     .WithMany(p => p.WhiteList)
                     .HasForeignKey(d => d.ParkingRestrictionName)
