@@ -3,14 +3,17 @@ export interface LoginData {
     pass: string
 };
 
-export interface User {
+export interface NewUserData { 
+    email: string,
+    username: string,
+    pass: string
+}
 
-    user: {
-        email: string,
-        username: string,
-        permission: string,
-        jwtToken: string
-    }
+export interface User {
+    email: string,
+    username: string,
+    permission: string,
+    jwtToken: string
 };
 
 export interface Permission {

@@ -1,20 +1,36 @@
 import React, { useState } from 'react'
 import './Login.css'
-import axios, { AxiosResponse } from 'axios'
 import {LoginData} from '../../Types/Types'
-
-const loginURL = "https://localhost:44376/api/auth/login"
+import { LOGIN_URL } from '../../Constants/Constants'
+import axios, { AxiosResponse } from 'axios'
+import { setCurrentUser } from '../Authentication'
 
 interface Props {
-    login: Function,
     setLoginview: Function
 };
 
-//chrome: session storage;
-//passar de componente em compnente, component drilling;
+export const loginUser = (data: LoginData) => {
 
+    const loginData = {
+        email: data.email,
+        pass: data.pass
+    }
 
-export const Login: React.FC<Props> = ({setLoginview, login}) => {
+    return axios({
+
+        method: "post",
+        url: LOGIN_URL,
+        data: loginData
+
+      }).then((response: AxiosResponse) => {
+
+          if (response.data) {
+              setCurrentUser(response.data);
+          }
+    });
+}
+
+export const Login = ({setLoginview} : Props) => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -23,14 +39,8 @@ export const Login: React.FC<Props> = ({setLoginview, login}) => {
         email: email,
         pass: password
     }
- 
-    const submitLogin: Function = () => {
-        login(loginData);
-    }
 
     return (
-        <div>
-
             <div className="login">
                 <h1 className="cardTitle">Login</h1>
                 <h3 className="label">Email</h3>
@@ -39,13 +49,10 @@ export const Login: React.FC<Props> = ({setLoginview, login}) => {
                 <input type="password" onChange={event => setPassword(event.target.value)}></input>
                
                 <div className="btnContainer">
-                    <button onClick={() => submitLogin(loginData)}>Login</button>
+                    <button onClick={() => loginUser(loginData)}>Login</button>
                 </div>
 
                 <span className="linkBtn" onClick={() => setLoginview(false)}>Register</span>
             </div>
-
-        </div>
-        
     )
 }

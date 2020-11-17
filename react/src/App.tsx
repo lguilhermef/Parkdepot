@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import {Authentication, getCurrentUser} from './Authentication/Authentication'
 import {Dashboard} from './Views/Dashboard/Dashboard'
-import { User, Permission } from './Types/Types'
+import { User } from './Types/Types'
 
 export const App: React.FC = () => {
 

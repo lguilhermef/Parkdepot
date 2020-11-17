@@ -42,17 +42,25 @@ namespace Parkdepot.Controllers
                 JwtToken = userToken
             };
 
-            return Ok(new
-            {
-                user = userDTO,
-            });
+            return Ok(userDTO);
         }
 
         [HttpPost("register-user")]
         public IActionResult registerUser([FromBody] ParkdepotUser newUser)
         {
             ParkdepotUser persistedUser = authService.registerUser(newUser);
-            return Ok(persistedUser);
+            string userToken = JwtTokenService.GenerateToken(persistedUser);
+
+            //TODO: Add a DTO layer
+            var userDTO = new
+            {
+                Email = persistedUser.Email,
+                Username = persistedUser.Username,
+                Permission = persistedUser.Permission,
+                JwtToken = userToken
+            };
+
+            return Ok(userDTO);
         }
     }
 }
