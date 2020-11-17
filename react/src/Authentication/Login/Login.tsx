@@ -55,7 +55,7 @@ export const Login = ({setLoginview} : Props) => {
                     <div className="btnContainer">
                         <button onClick={() => loginUser(loginData)}>Login</button>
                     </div>
-                    <span className="linkBtn" onClick={() => setLoginview(false)}>Register</span>
+                   {/* <span className="linkBtn" onClick={() => setLoginview(false)}>Register</span> */}
                 </div>
             </div>
         </div>
