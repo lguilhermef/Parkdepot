@@ -14,11 +14,15 @@
 }
 
 .headerLogo{
-    max-width: 2.5vw;
-    max-height: 5vh;
+    float: left;
+    width: 2.5vw;
+    height: 5vh;
+    margin-top: 1.5vh;
 }
 
 .logoLabel{
+    margin-top: 3vh;
+    float: left;
     margin-left: .5rem;
     font-weight: 700;
     color: rgba(48, 48, 48, 1);

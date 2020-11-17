@@ -7,6 +7,7 @@ import { User } from '../../Types/Types'
 import { Whitelist } from '../Whitelist/Whitelist'
 import { UserManager } from '../UserManager/UserManager'
 import { WhitelistNewRecord } from '../WhitelistNewRecord/WhitelistNewRecord'
+import Logo from '../../Assets/park-icon.png'
 
 export const Dashboard = () => {
 
@@ -15,19 +16,19 @@ export const Dashboard = () => {
     return (
         <div className="dashboardContainer">
             <div className="header">
+                <img className="headerLogo" src={Logo}></img><span className="logoLabel">Conceptual App</span>
                 <Link to={"/whitelist"}>
-                    <button>Whitelist</button>
+                    <button className="headerButton">Whitelist</button>
                 </Link>
                 
                 <Link to={"/new-plate"}>
-                    <button>Insert Record</button>
+                    <button className="headerButton">Insert Record</button>
                 </Link>
     {/* 
                 <Link to={"/user-manager"}>
                     <button>Manage Users</button>
                 </Link>*/}
-                <span className="cardTitle">Logged as <strong>{currentUser.username}</strong>!</span>
-                <button onClick={() => logout()}>Logout</button>
+                <button className="logoutButton" title={'Logout ' + currentUser.username} onClick={() => logout()}>Logout</button>
             </div>
 
             <div className="formContainer">
