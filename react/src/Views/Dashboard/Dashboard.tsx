@@ -5,8 +5,6 @@ import { User } from '../../Types/Types'
 export const Dashboard = () => {
 
     const currentUser: User = getCurrentUser();
-    console.log(currentUser);
-    console.log("DASH")
 
     return (
         <div>

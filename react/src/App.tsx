@@ -18,30 +18,9 @@ export const App: React.FC = () => {
 
   }, []);
 
-  /*const login = (user: User): void => {
-    
-    if (user.email) {
-      setCurrentUser(user);
-      return;
-    }
- 
-    console.log("Login: NOT WORKING!")
-  }; */
-
   return (
     <div className="App">
-      {currentUser ? (
-
-        <div>
-          <Dashboard/>
-          
-        </div>
-      
-      ) : (
-        //<Authentication login={login}/>
-        <Authentication/>
-
-      )}
+      {currentUser ? (<Dashboard/>) : (<Authentication/>)}
     </div>
   );
 };
