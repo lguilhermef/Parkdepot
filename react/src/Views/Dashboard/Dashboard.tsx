@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { logout } from '../../Authentication/Authentication'
 
 export const Dashboard = () => {
     return (
         <div>
-            S
+            Welcome!
+            <button onClick={() => logout()}>Logout</button>
         </div>
     )
 }

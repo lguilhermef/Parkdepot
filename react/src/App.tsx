@@ -16,7 +16,7 @@ export const App: React.FC = () => {
       setCurrentUser(user);
     }
 
-  }, [currentUser]);
+  }, []);
 
   /*const login = (user: User): void => {
     

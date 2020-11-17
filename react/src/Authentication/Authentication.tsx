@@ -1,25 +1,29 @@
 import React, { useState } from 'react'
 import {Login} from './Login/Login'
 import {Register} from './Register/Register'
-import { User } from '../Types/Types'
+import { LoginData, User } from '../Types/Types'
 import { BrowserStorage } from '../Enums/Enums'
 import { LOGIN_URL } from '../Constants/Constants'
 import axios, { AxiosResponse } from 'axios'
 
-export const login = (email: string, pass: string) => {
+export const login = (data: LoginData) => {
 
     const loginData = {
-        email: email,
-        pass: pass
+        email: data.email,
+        pass: data.pass
     }
 
-    return         axios({
+    return axios({
+
         method: "post",
         url: LOGIN_URL,
         data: loginData
-      }).then((resp: AxiosResponse) => {
-          if (resp.data) {
-              //login(resp.data.user);
+
+      }).then((response: AxiosResponse) => {
+
+          if (response.data) {
+              localStorage.setItem(BrowserStorage.GET_USER, JSON.stringify(response.data))
+              window.location.reload();
           }
     });
 }
@@ -31,6 +35,7 @@ export const getCurrentUser = (): User => {
 
 export const logout = (): void => {
     localStorage.removeItem(BrowserStorage.GET_USER);
+    window.location.reload();
 }
 
 export const Authentication = () => {
