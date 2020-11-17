@@ -32,7 +32,7 @@ export const WhitelistNewRecord = () => {
     
     return (
         <div className="form">
-            <div>
+           
                 <h1>Whitelist Entry</h1>
             
                 <div className="rowDiv">
@@ -46,8 +46,7 @@ export const WhitelistNewRecord = () => {
                 <div className="rowDiv">
                     <input className="newRecordForm" placeholder="Plate Owner" type="text" onChange={event => setPlateOwner(event.target.value)}></input>
                 </div>
-            </div>
-
+      
             <button onClick={() => postNewWhitelistRecord()}>Add</button>
         </div>  
     )

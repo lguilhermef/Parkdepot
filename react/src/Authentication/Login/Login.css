@@ -1,7 +1,7 @@
 .formContainer {
     background-color:  rgba(56, 103, 214, 1);
     color: white;
-    box-shadow: 0rem .2rem 2rem .8rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0rem .35rem .4rem 0rem rgba(0, 0, 0, 0.25);
     text-align: center;
     width: 100vw;
     height: 30rem;
@@ -11,6 +11,7 @@
     padding-top: 5rem;
     width: 50%;
     margin: auto;
+    margin-top:5rem;
 }
 
 .headerLogo{
@@ -30,7 +31,6 @@
 
 .label {
     display: inline-block;
-    
 }
 
 .linkBtn {
@@ -47,7 +47,6 @@
 }
 
 .cardTitle {
-    margin-top: 2rem;
     margin-bottom: 2rem;
 }
 

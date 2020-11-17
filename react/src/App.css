@@ -16,10 +16,12 @@ input {
   width: 80%;
   font-size: 1rem;
   text-align: left;
+  transition: .15s ease-out, transform 1s;
 }
 
 input:focus {
   outline: none;
+  box-shadow: inset .25rem .25rem .4rem 0rem rgba(0, 0, 0, 0.25);
 }
 
 button {
