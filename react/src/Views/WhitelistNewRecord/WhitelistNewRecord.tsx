@@ -5,6 +5,7 @@ import axios, {AxiosResponse} from 'axios'
 import { NEW_WHITELIST_RECORD_URL, WHITELIST_ENTRY_SUCCESS, WHITELIST_ENTRY_ERROR } from '../../Constants/Constants'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 import { AppMessageType } from '../../Enums/Enums'
+import {PermissionSelector} from './PermissionSelector/PermissionSelector'
 
 export const WhitelistNewRecord = () => {
     
@@ -17,12 +18,12 @@ export const WhitelistNewRecord = () => {
 
     let newWhitelistEntry: WhitelistRecord = {
         plateLicense: plateLicense,
-        parkingRestrictionName: "Staff",
+        parkingRestrictionName: parkingRestrictionName,
         plateOwner: plateOwner,
     };
 
     const postNewWhitelistRecord = () => {
-        
+
         axios({
 
             method: "post",
@@ -47,24 +48,22 @@ export const WhitelistNewRecord = () => {
 
     return (
         <div>
-        <div className="form">
-           
-                <h1>Whitelist Entry</h1>
+            <div className="form">
             
+                <h1>Whitelist Entry</h1>
+                
                 <div className="rowDiv">
                     <input className="newRecordForm" placeholder="Plate License" value={plateLicense} type="text" onChange={event => setPlateLicense(event.target.value)}></input>
                 </div>
 
-                <div className="rowDiv">
-                    <input className="newRecordForm" placeholder="Permision Type" value={parkingRestrictionName} type="text" onChange={event => setParkingReistrictionName(event.target.value)}></input>
-                </div>
-
+                <PermissionSelector setOptionHook={setParkingReistrictionName}/>
+  
                 <div className="rowDiv">
                     <input className="newRecordForm" placeholder="Plate Owner" type="text" value={plateOwner} onChange={event => setPlateOwner(event.target.value)}></input>
                 </div>
-      
-            <button onClick={() => postNewWhitelistRecord()}>Add</button>
-        </div>  
+        
+                <button onClick={() => postNewWhitelistRecord()}>Add</button>
+            </div>  
             <AppMessage message={WHITELIST_ENTRY_SUCCESS} messageType={AppMessageType.SUCCESS} showMessage={showSuccessMessage} hideMessageHook={setShowSuccessMessage}/>
             <AppMessage message={WHITELIST_ENTRY_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
         </div>

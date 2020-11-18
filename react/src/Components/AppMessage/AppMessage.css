@@ -1,0 +1,26 @@
+.errorMessage {
+    position: fixed;
+    bottom: 10vh;
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgba(214, 28, 28, 0.8), rgb(253, 253, 253));
+    height: 3rem;
+    width: 100vw;
+    padding-top: 2rem;
+    transition: .6s ease-in-out;
+    box-shadow: inset 0 0 .2rem .2rem rgba(0, 0, 0, 0.18);
+  }
+  
+  .messageText{
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+  }
+  
+  .successMessage{
+    position: fixed;
+    bottom: 10vh;
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgba(35, 153, 45, 0.8), rgb(253, 253, 253));
+    height: 3rem;
+    width: 100vw;
+    padding-top: 2rem;
+    transition: .6s ease-in-out;
+    box-shadow: inset 0 0 .2rem .2rem rgba(0, 0, 0, 0.18);
+  }

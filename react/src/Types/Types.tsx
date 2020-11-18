@@ -27,3 +27,8 @@ export interface WhitelistRecord {
     parkingRestrictionName: string,
     plateOwner: string
 }
+
+export interface ParkingRestriction{
+    restrName: string,
+    maxParkingTime: number
+}
