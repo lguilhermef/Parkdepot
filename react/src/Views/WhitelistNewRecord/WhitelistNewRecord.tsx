@@ -24,6 +24,11 @@ export const WhitelistNewRecord = () => {
 
     const postNewWhitelistRecord = () => {
 
+        if (plateLicense.length < 3){
+            setShowErrorMessage(true);
+            return;
+        }
+
         axios({
 
             method: "post",

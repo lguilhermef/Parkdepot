@@ -11,5 +11,5 @@ export const GET_PARKING_PERMISSION_LST_URL = "https://localhost:44376/api/parki
 export const LOGIN_ERROR_MESSAGE = "Wrong email or password.";
 
 export const WHITELIST_ENTRY_SUCCESS = "Plate succesfully added.";
-export const WHITELIST_ENTRY_ERROR = "The plate entry was refused: please, check if the plate is already."
+export const WHITELIST_ENTRY_ERROR = "The plate entry was refused: please, check if the plate is already registered."
 export const GET_WHITELIST_ERROR = "A technical problem prevented the server from loading the whitelist."
