@@ -16,16 +16,18 @@ export const Dashboard = () => {
     return (
         <div className="dashboardContainer">
             <div className="header">
-                <img className="headerLogo" src={Logo}></img><span className="logoLabel">Conceptual App</span>
+                <Link to={"/"}>
+                    <img className="headerLogo" src={Logo}></img><span className="logoLabel">Conceptual App</span>
+                </Link>
                 
                 <Link to={"/new-plate"}>
                     <button className="headerButton">Insert Record</button>
                 </Link>
 
-    {/* 
                 <Link to={"/whitelist"}>
                     <button className="headerButton">Whitelist</button>
                 </Link>
+    {/* 
                 <Link to={"/user-manager"}>
                     <button>Manage Users</button>
                 </Link>*/}

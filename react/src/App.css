@@ -54,6 +54,23 @@ button:active{
   box-shadow: 0rem 0rem 0rem 0rem rgba(0, 0, 0, 0.18);
 }
 
+th{
+  font-size: 1.2rem;
+  line-height: 7.5vh;
+  color: white;
+}
+
+td{
+  height: 3.5vh;
+  width: 7vw;
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
