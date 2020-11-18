@@ -36,12 +36,16 @@ export const Whitelist = () => {
 
         return (
             <table className="form tableForm">
-                <tr>
-                    <th>Vehicle Plate</th>
-                    <th>Owner</th>
-                    <th>License Type</th>
-                </tr>
-                {renderTableData()}
+                <thead>
+                    <tr>
+                        <th>Vehicle Plate</th>
+                        <th>Owner</th>
+                        <th>License Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderTableData()}
+                </tbody>
             </table>
         );
     }
