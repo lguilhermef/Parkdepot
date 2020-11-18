@@ -27,7 +27,7 @@ export const Whitelist = () => {
 
         if (whitelist){
             return whitelist.map(record => {
-                return <tr><td>{record.plateLicense}</td><td>{record.plateOwner}</td><td>{record.parkingRestrictionName}</td></tr>
+                return <tr id={record.plateLicense}><td>{record.plateLicense}</td><td>{record.plateOwner}</td><td>{record.parkingRestrictionName}</td></tr>
             });
         }
     }

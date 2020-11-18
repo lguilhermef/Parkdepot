@@ -24,7 +24,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
                 setLstOptions(response.data);
             }
         });
-    }, []);
+    }, [lstOptions]);
     
     const renderOptions = () => {
         return lstOptions.map(option => {
