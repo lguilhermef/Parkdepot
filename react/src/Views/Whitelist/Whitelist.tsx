@@ -53,7 +53,7 @@ export const Whitelist = () => {
     }
 
     const editEntry = (record: WhitelistRecord) => {
-
+        window.location.href = "/edit-plate";
     }
 
     const renderTableData = () => {

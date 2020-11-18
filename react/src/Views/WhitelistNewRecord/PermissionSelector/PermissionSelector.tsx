@@ -22,12 +22,12 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
             
             if (response.data){
                 setLstOptions(response.data);
-                handleChange(lstOptions[0]?.restrName);
+                handleChange(response.data[0]?.restrName);
             }
         }).catch(e => {
             console.log(e);
         });
-    }, [lstOptions]);
+    }, []);
     
     const renderOptions = () => {
         return lstOptions.map(option => {
@@ -36,6 +36,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
     }
 
     const handleChange = (option: string) => {
+        console.log("CHANGE" + option)
         setOptionHook(option)
     }
 
