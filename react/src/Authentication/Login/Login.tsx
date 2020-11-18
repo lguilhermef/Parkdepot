@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './Login.css'
 import {LoginData} from '../../Types/Types'
-import { LOGIN_URL } from '../../Constants/Constants'
+import { LOGIN_URL, LOGIN_ERROR_MESSAGE } from '../../Constants/Constants'
+import { AppMessageType } from '../../Enums/Enums'
 import axios, { AxiosResponse } from 'axios'
 import { setCurrentUser } from '../Authentication'
 import Logo from '../../Assets/park-icon.png'
+import { AppMessage } from '../../Components/AppMessage/AppMessage'
 
 interface Props {
     setLoginview: Function
@@ -37,17 +39,12 @@ export const Login = ({setLoginview} : Props) => {
         }).then((response: AxiosResponse) => {
             
             if (response.data) {
-                setShowErrorMessage(false);
                 setCurrentUser(response.data);
             }
 
         }).catch(error => {
             setShowErrorMessage(true);            
         });
-    }
-
-    const interfaceMessage = () => {
-        return showErrorMessage ? (<div className="message"><span className="errorMessageText">Wrong email or password.</span></div>) : <div></div>;
     }
 
     return (
@@ -68,7 +65,7 @@ export const Login = ({setLoginview} : Props) => {
                 </div>
             </div>
 
-            {interfaceMessage()}
+            <AppMessage message={LOGIN_ERROR_MESSAGE} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
 
         </div>
     )
