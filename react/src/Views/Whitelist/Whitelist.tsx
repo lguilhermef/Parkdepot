@@ -33,7 +33,6 @@ export const Whitelist = () => {
 
     const deleteEntry = (record: WhitelistRecord) => {
 
-        
         axios({
 
             method: "post",
@@ -48,8 +47,13 @@ export const Whitelist = () => {
             }
         
         }).catch(() => {
+            //TODO: Customize message to reflect the failure to delete an entry;
             setShowErrorMessage(true);
         });
+    }
+
+    const editEntry = (record: WhitelistRecord) => {
+
     }
 
     const renderTableData = () => {
@@ -60,7 +64,10 @@ export const Whitelist = () => {
                     <td>{record.plateLicense}</td>
                     <td>{record.plateOwner}</td>
                     <td>{record.parkingRestrictionName}</td>
-                    <td><button className="tableButton" onClick={() => deleteEntry(record)}>x</button> - E</td>
+                    <td>
+                        <button className="tableDeleteButton" onClick={() => deleteEntry(record)}>Delete</button> 
+                        <button className="tableEditButton" onClick={() => editEntry(record)}>Edit</button>
+                    </td>
                 </tr>;
             });
         }
