@@ -10,35 +10,44 @@ interface Props {
     setLoginview: Function
 };
 
-export const loginUser = (data: LoginData) => {
-
-    const loginData = {
-        email: data.email,
-        pass: data.pass
-    }
-
-    return axios({
-
-        method: "post",
-        url: LOGIN_URL,
-        data: loginData
-
-      }).then((response: AxiosResponse) => {
-
-          if (response.data) {
-              setCurrentUser(response.data);
-          }
-    });
-}
-
 export const Login = ({setLoginview} : Props) => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
 
     let loginData: LoginData = {
         email: email,
         pass: password
+    }
+
+    const loginUser = (data: LoginData) => {
+
+        const loginData = {
+            email: data.email,
+            pass: data.pass
+        }
+    
+        return axios({
+    
+            method: "post",
+            url: LOGIN_URL,
+            data: loginData
+    
+        }).then((response: AxiosResponse) => {
+            
+            if (response.data) {
+                setShowErrorMessage(false);
+                setCurrentUser(response.data);
+            }
+        }).catch(error => {
+            setShowErrorMessage(true);            
+        });
+    }
+
+    const interfaceMessage = () => {
+
+        return showErrorMessage ? (<div className="message"><span className="messageText">Wrong email or password.</span></div>) : <div></div>;
     }
 
     return (
@@ -58,6 +67,9 @@ export const Login = ({setLoginview} : Props) => {
                    {/* <span className="linkBtn" onClick={() => setLoginview(false)}>Register</span> */}
                 </div>
             </div>
+
+            {interfaceMessage()}
+
         </div>
     )
 }
