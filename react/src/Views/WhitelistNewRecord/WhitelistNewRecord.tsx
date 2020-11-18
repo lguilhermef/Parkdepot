@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import './WhitelistNewRecord.css'
 import { WhitelistRecord } from '../../Types/Types'
 import axios, {AxiosResponse} from 'axios'
-import { NEW_WHITELIST_RECORD_URL } from '../../Constants/Constants'
+import { NEW_WHITELIST_RECORD_URL, WHITELIST_ENTRY_SUCCESS, WHITELIST_ENTRY_ERROR } from '../../Constants/Constants'
+import { AppMessage } from '../../Components/AppMessage/AppMessage'
+import { AppMessageType } from '../../Enums/Enums'
 
 export const WhitelistNewRecord = () => {
     
@@ -27,9 +29,13 @@ export const WhitelistNewRecord = () => {
             url: NEW_WHITELIST_RECORD_URL,
             data: newWhitelistEntry
     
-          }).then((response: AxiosResponse) => {
+        }).then((response: AxiosResponse) => {
+        
             setShowSuccessMessage(true);
-            clearFrom();
+            clearFrom()}
+        
+        ).catch(() => {
+            setShowErrorMessage(true);
         });
     }
 
@@ -39,15 +45,6 @@ export const WhitelistNewRecord = () => {
         setPlateOwner("");
     }
 
-    const interfaceErrorMessage = () => {
-        return showErrorMessage ? (<div className="errorMessage"><span className="messageText">Wrong email or password.</span></div>) : <div></div>;
-    }
-
-    const interfaceSuccessMessage = () => {
-        setTimeout(() => setShowSuccessMessage(false), 4000);
-        return showSuccessMessage ? (<div className="successMessage"><span className="messageText">Plate succesfully added.</span></div>) : <div></div>;
-    }
-    
     return (
         <div>
         <div className="form">
@@ -68,7 +65,8 @@ export const WhitelistNewRecord = () => {
       
             <button onClick={() => postNewWhitelistRecord()}>Add</button>
         </div>  
-        {interfaceSuccessMessage()}
+            <AppMessage message={WHITELIST_ENTRY_SUCCESS} messageType={AppMessageType.SUCCESS} showMessage={showSuccessMessage} hideMessageHook={setShowSuccessMessage}/>
+            <AppMessage message={WHITELIST_ENTRY_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
         </div>
     )
 }

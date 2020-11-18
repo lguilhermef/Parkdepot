@@ -6,4 +6,7 @@ export const GET_WHITELIST_URL = "https://localhost:44376/api/whitelist/get-whit
 
 
 // ### APP MESSAGES ###
-export const LOGIN_ERROR_MESSAGE = "Wrong email or password."
+export const LOGIN_ERROR_MESSAGE = "Wrong email or password.";
+
+export const WHITELIST_ENTRY_SUCCESS = "Plate succesfully added.";
+export const WHITELIST_ENTRY_ERROR = "The plate entry was refused: please, check if the plate is already."
