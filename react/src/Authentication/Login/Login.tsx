@@ -42,7 +42,7 @@ export const Login = ({setLoginview} : Props) => {
                 setCurrentUser(response.data);
             }
 
-        }).catch(error => {
+        }).catch(() => {
             setShowErrorMessage(true);            
         });
     }
