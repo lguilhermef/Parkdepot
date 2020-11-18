@@ -24,7 +24,7 @@ export const WhitelistNewRecord = () => {
 
     const postNewWhitelistRecord = () => {
 
-        if (plateLicense.length < 3){
+        if (plateLicense.length < 3 && plateOwner.length < 2){
             setShowErrorMessage(true);
             return;
         }

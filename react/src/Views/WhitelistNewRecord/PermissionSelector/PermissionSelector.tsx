@@ -31,7 +31,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
     
     const renderOptions = () => {
         return lstOptions.map(option => {
-            return <option key={option.restrName} value={option.restrName}>{option.restrName} (Time Limit: {option.maxParkingTime})</option>
+            return <option key={option.restrName} value={option.restrName}>{option.restrName} (Time Limit: {option.maxParkingTime}h)</option>
         })
     }
 
