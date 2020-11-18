@@ -2,6 +2,7 @@
 export const LOGIN_URL = "https://localhost:44376/api/auth/login";
 export const REGISTER_USER_URL = "https://localhost:44376/api/auth/register-user";
 export const NEW_WHITELIST_RECORD_URL = "https://localhost:44376/api/whitelist/new-whitelist-record";
+export const DELETE_WHITELIST_ENTRY_URL = "https://localhost:44376/api/whitelist/delete-record";
 export const GET_WHITELIST_URL = "https://localhost:44376/api/whitelist/get-whitelist";
 export const GET_PARKING_PERMISSION_LST_URL = "https://localhost:44376/api/parkingRestriction/get-parking-restrictions"
 

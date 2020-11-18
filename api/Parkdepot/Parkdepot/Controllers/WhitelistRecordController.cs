@@ -33,5 +33,12 @@ namespace Parkdepot.Controllers
             whitelistService.addWhitelistRecord(whitelistRecord);
             return Ok();
         }
+
+        [HttpPost("delete-record")]
+        public IActionResult removeWhitelistRecord([FromBody] WhitelistRecord whitelistRecord)
+        {
+            whitelistService.removeRecord(whitelistRecord);
+            return Ok();
+        }
     }
 }

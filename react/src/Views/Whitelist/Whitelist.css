@@ -25,3 +25,17 @@ tbody tr{
 tbody tr:hover {
     background-color: rgb(248, 248, 248, 0.06);
 }
+
+.tableButton{
+    width: 1.5vw;
+    height: 2.5vh;
+    background-color:  rgb(214, 56, 56);
+    border: 1px solid rgb(214, 179, 179); 
+    color:  rgb(255, 255, 255);
+}
+
+.tableButton:hover{
+    background-color:  rgb(255, 255, 255);
+    color: rgb(214, 56, 56);
+    border: 1px solid rgb(214, 56, 56);  
+}

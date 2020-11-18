@@ -4,7 +4,7 @@ import axios, {AxiosResponse} from 'axios'
 import { GET_WHITELIST_URL } from '../../Constants/Constants'
 import {WhitelistRecord} from '../../Types/Types'
 import { AppMessageType } from '../../Enums/Enums'
-import { GET_WHITELIST_ERROR } from '../../Constants/Constants'
+import { GET_WHITELIST_ERROR, DELETE_WHITELIST_ENTRY_URL } from '../../Constants/Constants'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 
 
@@ -31,11 +31,37 @@ export const Whitelist = () => {
             
     }, []);
 
+    const deleteEntry = (record: WhitelistRecord) => {
+
+        
+        axios({
+
+            method: "post",
+            url: DELETE_WHITELIST_ENTRY_URL,
+            data: record
+    
+        }).then((response: AxiosResponse) => {
+        
+            if (whitelist) {
+                let updatedList: WhitelistRecord[] = whitelist.filter(r => r.plateLicense != record.plateLicense);
+                setWhitelist(updatedList);
+            }
+        
+        }).catch(() => {
+            setShowErrorMessage(true);
+        });
+    }
+
     const renderTableData = () => {
 
         if (whitelist){
             return whitelist.map(record => {
-                return <tr id={record.plateLicense}><td>{record.plateLicense}</td><td>{record.plateOwner}</td><td>{record.parkingRestrictionName}</td></tr>
+                return <tr id={record.plateLicense}>
+                    <td>{record.plateLicense}</td>
+                    <td>{record.plateOwner}</td>
+                    <td>{record.parkingRestrictionName}</td>
+                    <td><button className="tableButton" onClick={() => deleteEntry(record)}>x</button> - E</td>
+                </tr>;
             });
         }
     }
@@ -49,6 +75,7 @@ export const Whitelist = () => {
                         <th>Vehicle Plate</th>
                         <th>Owner</th>
                         <th>License Type</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
