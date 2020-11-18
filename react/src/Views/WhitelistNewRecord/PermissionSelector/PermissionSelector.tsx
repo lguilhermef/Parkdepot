@@ -22,6 +22,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
             
             if (response.data){
                 setLstOptions(response.data);
+                handleChange(lstOptions[0]?.restrName);
             }
         });
     }, [lstOptions]);
@@ -32,13 +33,13 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
         })
     }
 
-    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setOptionHook(e.target.value)
+    const handleChange = (option: string) => {
+        setOptionHook(option)
     }
 
     return (
         <div className="rowDiv">
-            <select onChange={e => handleChange(e)}>
+            <select value={lstOptions[0]?.restrName} onChange={e => handleChange(e.target.value)}>
                 {renderOptions()}
             </select>
         </div>
