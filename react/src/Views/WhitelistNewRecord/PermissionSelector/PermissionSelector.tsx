@@ -24,6 +24,8 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
                 setLstOptions(response.data);
                 handleChange(lstOptions[0]?.restrName);
             }
+        }).catch(e => {
+            console.log(e);
         });
     }, [lstOptions]);
     

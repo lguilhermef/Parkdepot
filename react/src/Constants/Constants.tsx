@@ -11,3 +11,4 @@ export const LOGIN_ERROR_MESSAGE = "Wrong email or password.";
 
 export const WHITELIST_ENTRY_SUCCESS = "Plate succesfully added.";
 export const WHITELIST_ENTRY_ERROR = "The plate entry was refused: please, check if the plate is already."
+export const GET_WHITELIST_ERROR = "A technical problem prevented the server from loading the whitelist."
