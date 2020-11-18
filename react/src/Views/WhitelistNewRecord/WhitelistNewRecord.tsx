@@ -9,6 +9,9 @@ export const WhitelistNewRecord = () => {
     const [plateLicense, setPlateLicense] = useState<string>("");
     const [parkingRestrictionName, setParkingReistrictionName] = useState<string>("");
     const [plateOwner, setPlateOwner] = useState<string>("");
+    const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
+    const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
+
 
     let newWhitelistEntry: WhitelistRecord = {
         plateLicense: plateLicense,
@@ -25,7 +28,7 @@ export const WhitelistNewRecord = () => {
             data: newWhitelistEntry
     
           }).then((response: AxiosResponse) => {
-            console.log(response);
+            setShowSuccessMessage(true);
             clearFrom();
         });
     }
@@ -35,8 +38,18 @@ export const WhitelistNewRecord = () => {
         setParkingReistrictionName("");
         setPlateOwner("");
     }
+
+    const interfaceErrorMessage = () => {
+        return showErrorMessage ? (<div className="errorMessage"><span className="messageText">Wrong email or password.</span></div>) : <div></div>;
+    }
+
+    const interfaceSuccessMessage = () => {
+        setTimeout(() => setShowSuccessMessage(false), 4000);
+        return showSuccessMessage ? (<div className="successMessage"><span className="messageText">Plate succesfully added.</span></div>) : <div></div>;
+    }
     
     return (
+        <div>
         <div className="form">
            
                 <h1>Whitelist Entry</h1>
@@ -55,5 +68,7 @@ export const WhitelistNewRecord = () => {
       
             <button onClick={() => postNewWhitelistRecord()}>Add</button>
         </div>  
+        {interfaceSuccessMessage()}
+        </div>
     )
 }

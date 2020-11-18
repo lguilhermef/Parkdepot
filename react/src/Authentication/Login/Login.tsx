@@ -40,14 +40,14 @@ export const Login = ({setLoginview} : Props) => {
                 setShowErrorMessage(false);
                 setCurrentUser(response.data);
             }
+
         }).catch(error => {
             setShowErrorMessage(true);            
         });
     }
 
     const interfaceMessage = () => {
-
-        return showErrorMessage ? (<div className="message"><span className="messageText">Wrong email or password.</span></div>) : <div></div>;
+        return showErrorMessage ? (<div className="message"><span className="errorMessageText">Wrong email or password.</span></div>) : <div></div>;
     }
 
     return (
