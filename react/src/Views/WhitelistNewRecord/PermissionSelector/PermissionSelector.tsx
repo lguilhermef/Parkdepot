@@ -41,7 +41,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
 
     return (
         <div className="rowDiv">
-            <select value={lstOptions[0]?.restrName} onChange={e => handleChange(e.target.value)}>
+            <select onChange={e => handleChange(e.target.value)}>
                 {renderOptions()}
             </select>
         </div>

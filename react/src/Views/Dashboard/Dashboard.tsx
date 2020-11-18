@@ -17,7 +17,7 @@ export const Dashboard = () => {
         <div className="dashboardContainer">
             <div className="header">
                 <Link to={"/"}>
-                    <img className="headerLogo" src={Logo}></img><span className="logoLabel">Conceptual App</span>
+                    <img className="headerLogo" src={Logo}></img><span className="logoLabel">1-Week Challenge App</span>
                 </Link>
                 
                 <Link to={"/new-plate"}>
