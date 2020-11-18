@@ -82,7 +82,7 @@ export const Whitelist = () => {
                         <th>Vehicle Plate</th>
                         <th>Owner</th>
                         <th>License Type</th>
-                        <th></th>
+                        <th>Management Options</th>
                     </tr>
                 </thead>
                 <tbody>
