@@ -6,7 +6,7 @@ import {WhitelistRecord} from '../../Types/Types'
 import { AppMessageType } from '../../Enums/Enums'
 import { GET_WHITELIST_ERROR, DELETE_WHITELIST_ENTRY_URL } from '../../Constants/Constants'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
-import { JsxElement } from 'typescript'
+import { WhitelistRecordForm } from '../../Components/WhitelistRecordForm/WhitelistRecordForm'
 
 
 export const Whitelist = (): JSX.Element => {
@@ -14,6 +14,7 @@ export const Whitelist = (): JSX.Element => {
     const [whitelist, setWhitelist] = useState<WhitelistRecord[]>();
     const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
     const [showEditView, setShowEditView] = useState<boolean>(false);
+    const [editRecord, setEditRecord] = useState<WhitelistRecord | null>(null);
 
     useEffect(() => {
 
@@ -54,11 +55,6 @@ export const Whitelist = (): JSX.Element => {
         });
     }
 
-    const editEntry = (record: WhitelistRecord) => {
-        
-
-    }
-
     const renderTableData = (record: WhitelistRecord): JSX.Element => (
 
         <tr id={record.plateLicense}>
@@ -80,7 +76,7 @@ export const Whitelist = (): JSX.Element => {
                     <th>Vehicle Plate</th>
                     <th>Owner</th>
                     <th>License Type</th>
-                    <th>Management Options</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -88,6 +84,15 @@ export const Whitelist = (): JSX.Element => {
             </tbody>
         </table>
     );
+
+    const editEntry = (record: WhitelistRecord) => {
+        setEditRecord(record);
+        setShowEditView(true);
+    }
+
+    const renderWhitelistRecordForm =() => (
+        <WhitelistRecordForm editRecord={editRecord} submitForm={() =>console.log("here")}/>
+    )
 
     const renderWhitelist = () => (
         <div className="form">
@@ -98,7 +103,7 @@ export const Whitelist = (): JSX.Element => {
  
     return (
         <>
-            {renderWhitelist()}
+            {showEditView ? renderWhitelistRecordForm() : renderWhitelist()}
             <AppMessage message={GET_WHITELIST_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
         </>
     );
