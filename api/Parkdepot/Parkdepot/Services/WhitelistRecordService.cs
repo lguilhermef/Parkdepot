@@ -25,6 +25,10 @@ namespace Parkdepot.Services
         {
             _whitelistRepository.addWhitelistRecord(whitelistRecord);
         }
+        public void updateWhitelistRecord(WhitelistRecord whitelistRecord)
+        {
+            _whitelistRepository.updateWhitelistRecord(whitelistRecord);
+        } 
 
         public void removeRecord(WhitelistRecord whitelistRecord)
         {

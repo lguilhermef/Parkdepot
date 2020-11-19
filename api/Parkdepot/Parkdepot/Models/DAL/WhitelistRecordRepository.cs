@@ -33,6 +33,12 @@ namespace Parkdepot.Models.DAL
             dbContext.SaveChanges();
         }
 
+        public void updateWhitelistRecord (WhitelistRecord whitelistRecord)
+        {
+            dbContext.Update(whitelistRecord);
+            dbContext.SaveChanges();
+        }
+
         public void removeRecord(WhitelistRecord whitelistRecord)
         {
             dbContext.Remove(whitelistRecord);

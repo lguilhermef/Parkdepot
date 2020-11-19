@@ -4,7 +4,7 @@ import axios, {AxiosResponse} from 'axios'
 import { GET_WHITELIST_URL } from '../../Constants/Constants'
 import {WhitelistRecord} from '../../Types/Types'
 import { AppMessageType } from '../../Enums/Enums'
-import { GET_WHITELIST_ERROR, DELETE_WHITELIST_ENTRY_URL } from '../../Constants/Constants'
+import { GET_WHITELIST_ERROR, DELETE_WHITELIST_ENTRY_URL, UPDATE_WHITELIST_RECORD_URL } from '../../Constants/Constants'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 import { WhitelistRecordForm } from '../../Components/WhitelistRecordForm/WhitelistRecordForm'
 
@@ -55,11 +55,34 @@ export const Whitelist = (): JSX.Element => {
         });
     }
 
+    const updateRecord = (editWhitelistRecord: WhitelistRecord): void => {
+
+        if (editWhitelistRecord.plateLicense.length < 3 && editWhitelistRecord.plateOwner.length < 2){
+            setShowErrorMessage(true);
+            return;
+        }
+
+        axios({
+
+            method: "put",
+            url: UPDATE_WHITELIST_RECORD_URL,
+            data: editWhitelistRecord
+        }).then((response: AxiosResponse) => {
+        
+            window.location.reload();
+            //TODO: Show Success Message;
+            //setShowSuccessMessage(true);
+        }).catch(() => {
+
+            setShowErrorMessage(true);
+        });
+    }
+
     const renderTableData = (record: WhitelistRecord): JSX.Element => (
 
         <tr id={record.plateLicense}>
-            <td>{record.plateLicense}</td>
             <td>{record.plateOwner}</td>
+            <td>{record.plateLicense}</td>
             <td>{record.parkingRestrictionName}</td>
             <td>
                 <button className="tableDeleteButton" onClick={() => deleteEntry(record)}>Delete</button> 
@@ -73,8 +96,8 @@ export const Whitelist = (): JSX.Element => {
         <table className="form tableForm">
             <thead>
                 <tr>
-                    <th>Vehicle Plate</th>
                     <th>Owner</th>
+                    <th>Vehicle Plate</th>
                     <th>License Type</th>
                     <th>Options</th>
                 </tr>
@@ -91,7 +114,7 @@ export const Whitelist = (): JSX.Element => {
     }
 
     const renderWhitelistRecordForm =() => (
-        <WhitelistRecordForm editRecord={editRecord} submitForm={() =>console.log("here")}/>
+        <WhitelistRecordForm editRecord={editRecord} submitForm={updateRecord}/>
     )
 
     const renderWhitelist = () => (

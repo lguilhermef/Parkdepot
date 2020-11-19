@@ -34,6 +34,13 @@ namespace Parkdepot.Controllers
             return Ok();
         }
 
+        [HttpPut("update-record")]
+        public IActionResult updateWhitelistRecord([FromBody] WhitelistRecord whitelistRecord)
+        {
+            whitelistService.updateWhitelistRecord(whitelistRecord);
+            return Ok();
+        }
+
         [HttpPost("delete-record")]
         public IActionResult removeWhitelistRecord([FromBody] WhitelistRecord whitelistRecord)
         {
