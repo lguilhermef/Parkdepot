@@ -6,9 +6,10 @@ import {WhitelistRecord} from '../../Types/Types'
 import { AppMessageType } from '../../Enums/Enums'
 import { GET_WHITELIST_ERROR, DELETE_WHITELIST_ENTRY_URL } from '../../Constants/Constants'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
+import { JsxElement } from 'typescript'
 
 
-export const Whitelist = () => {
+export const Whitelist = (): JSX.Element => {
 
     const [whitelist, setWhitelist] = useState<WhitelistRecord[]>();
     const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
@@ -53,52 +54,46 @@ export const Whitelist = () => {
     }
 
     const editEntry = (record: WhitelistRecord) => {
-        window.location.href = "/edit-plate";
+        
     }
 
-    const renderTableData = () => {
+    const renderTableData = (record: WhitelistRecord): JSX.Element => (
 
-        if (whitelist){
-            return whitelist.map(record => {
-                return <tr id={record.plateLicense}>
-                    <td>{record.plateLicense}</td>
-                    <td>{record.plateOwner}</td>
-                    <td>{record.parkingRestrictionName}</td>
-                    <td>
-                        <button className="tableDeleteButton" onClick={() => deleteEntry(record)}>Delete</button> 
-                        <button className="tableEditButton" onClick={() => editEntry(record)}>Edit</button>
-                    </td>
-                </tr>;
-            });
-        }
-    }
+        <tr id={record.plateLicense}>
+            <td>{record.plateLicense}</td>
+            <td>{record.plateOwner}</td>
+            <td>{record.parkingRestrictionName}</td>
+            <td>
+                <button className="tableDeleteButton" onClick={() => deleteEntry(record)}>Delete</button> 
+                <button className="tableEditButton" onClick={() => editEntry(record)}>Edit</button>
+            </td>
+        </tr>
+    );
 
-    const renderTable = () => {
+    const renderTable = ():JSX.Element => (
 
-        return (
-            <table className="form tableForm">
-                <thead>
-                    <tr>
-                        <th>Vehicle Plate</th>
-                        <th>Owner</th>
-                        <th>License Type</th>
-                        <th>Management Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {renderTableData()}
-                </tbody>
-            </table>
-        );
-    }
+        <table className="form tableForm">
+            <thead>
+                <tr>
+                    <th>Vehicle Plate</th>
+                    <th>Owner</th>
+                    <th>License Type</th>
+                    <th>Management Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {whitelist?.map((wr: WhitelistRecord) => renderTableData(wr))}
+            </tbody>
+        </table>
+    );
  
     return (
-        <div>
+        <>
             <div className="form">
                 <h1>Whitelist</h1>
                 {renderTable()}
             </div>
             <AppMessage message={GET_WHITELIST_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
-        </div>
-    )
+        </>
+    );
 }

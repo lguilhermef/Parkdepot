@@ -4,7 +4,6 @@ import {Register} from './Register/Register'
 import { User } from '../Types/Types'
 import { BrowserStorage } from '../Enums/Enums'
 
-
 export const getCurrentUser = (): User => {
     let storedUserJson = localStorage.getItem(BrowserStorage.GET_USER);
     return storedUserJson != null ? JSON.parse(storedUserJson) : null;
@@ -20,17 +19,17 @@ export const logout = (): void => {
     window.location.reload();
 }
 
-export const Authentication = () => {
+export const Authentication = (): JSX.Element => {
 
-    const [showLoginview, setLoginview] = useState<boolean>(true);
+    const [showLoginView, setLoginView] = useState<boolean>(true);
 
     const handleChange: Function = (value:boolean): void => {
-        setLoginview(value);
+        setLoginView(value);
     };
 
     return (
         <div className="dashboardContainer">
-            {showLoginview ? <Login setLoginview={handleChange}/> : <Register/>}
+            {showLoginView ? <Login setLoginview={handleChange}/> : <Register/>}
         </div>
     );
 }

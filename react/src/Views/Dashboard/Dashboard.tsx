@@ -9,7 +9,7 @@ import { UserManager } from '../UserManager/UserManager'
 import { WhitelistNewRecord } from '../WhitelistNewRecord/WhitelistNewRecord'
 import Logo from '../../Assets/park-icon.png'
 
-export const Dashboard = () => {
+export const Dashboard = (): JSX.Element => {
 
     const currentUser: User = getCurrentUser();
 
@@ -36,8 +36,8 @@ export const Dashboard = () => {
 
             <div className="formContainer">
                 <Switch>
-                    <Route path="/whitelist" component={() => <Whitelist/>} />
-                    <Route path="/new-plate" component={() => <WhitelistNewRecord/>} />
+                    <Route path="/whitelist" component={() => <Whitelist/>}/>
+                    <Route path="/new-plate" component={() => <WhitelistNewRecord/>}/>
                     {/*<Route path="/user-manager" component={() => <UserManager/>} />*/}
                 </Switch>
             </div>

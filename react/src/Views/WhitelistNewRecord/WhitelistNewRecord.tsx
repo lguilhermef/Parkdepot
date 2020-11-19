@@ -14,6 +14,8 @@ export const WhitelistNewRecord = () => {
     const [plateOwner, setPlateOwner] = useState<string>("");
     const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
+    //edit -> booleano; 
+
 
 
     let newWhitelistEntry: WhitelistRecord = {
@@ -52,7 +54,7 @@ export const WhitelistNewRecord = () => {
     }
 
     return (
-        <div>
+        <>
             <div className="form">
             
                 <h1>Whitelist Entry</h1>
@@ -71,6 +73,6 @@ export const WhitelistNewRecord = () => {
             </div>  
             <AppMessage message={WHITELIST_ENTRY_SUCCESS} messageType={AppMessageType.SUCCESS} showMessage={showSuccessMessage} hideMessageHook={setShowSuccessMessage}/>
             <AppMessage message={WHITELIST_ENTRY_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
-        </div>
+        </>
     )
 }

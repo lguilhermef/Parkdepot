@@ -9,8 +9,8 @@ interface AppMessage {
     hideMessageHook: Function
 }
 
-export const AppMessage = ({message, messageType, showMessage, hideMessageHook}: AppMessage) => {
+export const AppMessage = ({message, messageType, showMessage, hideMessageHook}: AppMessage): JSX.Element => {
     
     setTimeout(() => hideMessageHook(false), 6000);
-    return showMessage ? (<div className={messageType}><span className="messageText">{message}</span></div>) : <div></div>;
+    return showMessage ? (<div className={messageType}><span className="messageText">{message}</span></div>) : <></>;
 }

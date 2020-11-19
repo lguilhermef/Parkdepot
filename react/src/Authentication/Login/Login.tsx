@@ -12,7 +12,7 @@ interface Props {
     setLoginview: Function
 };
 
-export const Login = ({setLoginview} : Props) => {
+export const Login = ({setLoginview} : Props): JSX.Element => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -48,7 +48,7 @@ export const Login = ({setLoginview} : Props) => {
     }
 
     return (
-        <div>
+        <>
             <div className="header">
                 <img className="headerLogo" src={Logo}></img><span className="logoLabel">Conceptual App</span>
             </div>
@@ -67,6 +67,6 @@ export const Login = ({setLoginview} : Props) => {
 
             <AppMessage message={LOGIN_ERROR_MESSAGE} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
 
-        </div>
+        </>
     )
 }
