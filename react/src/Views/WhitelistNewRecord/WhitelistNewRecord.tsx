@@ -6,27 +6,28 @@ import { NEW_WHITELIST_RECORD_URL, WHITELIST_ENTRY_SUCCESS, WHITELIST_ENTRY_ERRO
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 import { AppMessageType } from '../../Enums/Enums'
 import {PermissionSelector} from './PermissionSelector/PermissionSelector'
+import {RecordForm} from '../../Components/RecordForm/RecordForm'
 
 export const WhitelistNewRecord = () => {
     
-    const [plateLicense, setPlateLicense] = useState<string>("");
-    const [parkingRestrictionName, setParkingReistrictionName] = useState<string>("");
-    const [plateOwner, setPlateOwner] = useState<string>("");
+    //const [plateLicense, setPlateLicense] = useState<string>("");
+    //const [parkingRestrictionName, setParkingReistrictionName] = useState<string>("");
+    //const [plateOwner, setPlateOwner] = useState<string>("");
     const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
     //edit -> booleano; 
 
 
 
-    let newWhitelistEntry: WhitelistRecord = {
+    /*let newWhitelistEntry: WhitelistRecord = {
+        plateOwner: plateOwner,
         plateLicense: plateLicense,
         parkingRestrictionName: parkingRestrictionName,
-        plateOwner: plateOwner,
-    };
+    };*/
 
-    const postNewWhitelistRecord = () => {
+    const submitForm = (newWhitelistRecord: WhitelistRecord) => {
 
-        if (plateLicense.length < 3 && plateOwner.length < 2){
+        if (newWhitelistRecord.plateLicense.length < 3 && newWhitelistRecord.plateOwner.length < 2){
             setShowErrorMessage(true);
             return;
         }
@@ -35,42 +36,20 @@ export const WhitelistNewRecord = () => {
 
             method: "post",
             url: NEW_WHITELIST_RECORD_URL,
-            data: newWhitelistEntry
-    
+            data: newWhitelistRecord
         }).then((response: AxiosResponse) => {
         
             setShowSuccessMessage(true);
-            clearFrom()}
-        
-        ).catch(() => {
+        }).catch(() => {
+
             setShowErrorMessage(true);
         });
     }
 
-    const clearFrom = () => {
-        setPlateLicense("");
-        setParkingReistrictionName("");
-        setPlateOwner("");
-    }
-
     return (
         <>
-            <div className="form">
-            
-                <h1>Whitelist Entry</h1>
-                
-                <div className="rowDiv">
-                    <input className="newRecordForm" placeholder="Plate License" value={plateLicense} type="text" onChange={event => setPlateLicense(event.target.value)}></input>
-                </div>
+            <RecordForm editRecord={null} submitForm={submitForm}/>
 
-                <PermissionSelector setOptionHook={setParkingReistrictionName}/>
-  
-                <div className="rowDiv">
-                    <input className="newRecordForm" placeholder="Plate Owner" type="text" value={plateOwner} onChange={event => setPlateOwner(event.target.value)}></input>
-                </div>
-        
-                <button onClick={() => postNewWhitelistRecord()}>Add</button>
-            </div>  
             <AppMessage message={WHITELIST_ENTRY_SUCCESS} messageType={AppMessageType.SUCCESS} showMessage={showSuccessMessage} hideMessageHook={setShowSuccessMessage}/>
             <AppMessage message={WHITELIST_ENTRY_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
         </>
