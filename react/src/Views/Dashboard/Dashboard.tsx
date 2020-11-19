@@ -8,6 +8,7 @@ import { Whitelist } from '../Whitelist/Whitelist'
 import { UserManager } from '../UserManager/UserManager'
 import { WhitelistNewRecord } from '../WhitelistNewRecord/WhitelistNewRecord'
 import Logo from '../../Assets/park-icon.png'
+import { PermissionType } from '../../Enums/Enums'
 
 export const Dashboard = (): JSX.Element => {
 
@@ -20,9 +21,14 @@ export const Dashboard = (): JSX.Element => {
                     <img className="headerLogo" src={Logo}></img><span className="logoLabel">1-Week Challenge App</span>
                 </Link>
                 
-                <Link to={"/new-plate"}>
-                    <button className="headerButton">Insert Record</button>
-                </Link>
+                { getCurrentUser().permission != PermissionType.GUEST ?
+                
+                    (<Link to={"/new-plate"}>
+                        <button className="headerButton">Insert Record</button>
+                    </Link>) 
+                    : 
+                    null
+                }
 
                 <Link to={"/whitelist"}>
                     <button className="headerButton">Whitelist</button>
@@ -37,7 +43,7 @@ export const Dashboard = (): JSX.Element => {
             <div className="formContainer">
                 <Switch>
                     <Route path="/whitelist" component={() => <Whitelist/>}/>
-                    <Route path="/new-plate" component={() => <WhitelistNewRecord/>}/>
+                    {getCurrentUser().permission != PermissionType.GUEST ? <Route path="/new-plate" component={() => <WhitelistNewRecord/>}/> : null}
                     {/*<Route path="/user-manager" component={() => <UserManager/>} />*/}
                 </Switch>
             </div>

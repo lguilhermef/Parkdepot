@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useState, useEffect } from 'react'
 import axios, {AxiosResponse} from 'axios'
 import { ParkingRestriction } from '../../../Types/Types'
-import { GET_PARKING_PERMISSION_LST_URL } from '../../../Constants/Constants'
+import { GET_PARKING_PERMISSION_LST_URL, DEFAULT_PARKING_RESTRICTION_NAME } from '../../../Constants/Constants'
+import { getCurrentUser } from '../../../Authentication/Authentication'
 
 interface Props {
     setOptionHook: Function
@@ -14,31 +15,46 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
     useEffect(() => {
 
         axios({
-
             method: "get",
-            url: GET_PARKING_PERMISSION_LST_URL
-
+            url: GET_PARKING_PERMISSION_LST_URL,
+            headers: {"Authorization" : `Bearer ${getCurrentUser().jwtToken}`}
         }).then((response: AxiosResponse) => {
             
             if (response.data){
-                setLstOptions(response.data);
-                handleChange(response.data[0]?.restrName);
+
+                let organizedOpts: ParkingRestriction[] = setDefaultOptionFirst(response.data, DEFAULT_PARKING_RESTRICTION_NAME);
+                setLstOptions(organizedOpts);
+                handleChange(organizedOpts[0]?.restrName);
             }
+
         }).catch(e => {
             console.log(e);
         });
     }, []);
+
+    const setDefaultOptionFirst = (arrParkingRestriction :ParkingRestriction[], defaultOptionName: string) => {
+
+        let defaultOption: ParkingRestriction | undefined = arrParkingRestriction.find((option: ParkingRestriction) => option.restrName == defaultOptionName);
+        let defaultlessArr: ParkingRestriction[] = arrParkingRestriction.filter((option: ParkingRestriction) => option.restrName != defaultOptionName);
+
+        if (defaultOption) {
+            defaultlessArr.unshift(defaultOption);
+        }
+
+        return defaultOption ? defaultlessArr : arrParkingRestriction;
+    };
     
-    const renderOptions = () => {
-        return lstOptions.map(option => {
-            return <option key={option.restrName} value={option.restrName}>{option.restrName} (Time Limit: {option.maxParkingTime}h)</option>
-        })
-    }
+    const renderOptions = () => (
+        
+        lstOptions.map((option: ParkingRestriction) => (
+
+            <option key={option.restrName} value={option.restrName}>{option.restrName} (Time Limit: {option.maxParkingTime}h)</option>
+        )
+    ));
 
     const handleChange = (option: string) => {
-        console.log("CHANGE" + option)
         setOptionHook(option)
-    }
+    };
 
     return (
         <div className="rowDiv">
@@ -46,5 +62,5 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
                 {renderOptions()}
             </select>
         </div>
-    )
+    );
 } 

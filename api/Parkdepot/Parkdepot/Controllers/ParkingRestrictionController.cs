@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Parkdepot.Models.DB;
 using Parkdepot.Services;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Parkdepot.Controllers
 {
+    [Authorize]
     [Route("api/parkingRestriction")]
     public class ParkingRestrictionController : ControllerBase
     {

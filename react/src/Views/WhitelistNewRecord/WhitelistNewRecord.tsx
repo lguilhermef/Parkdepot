@@ -5,8 +5,9 @@ import axios, {AxiosResponse} from 'axios'
 import { NEW_WHITELIST_RECORD_URL, WHITELIST_ENTRY_SUCCESS, WHITELIST_ENTRY_ERROR } from '../../Constants/Constants'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 import { AppMessageType } from '../../Enums/Enums'
-import {PermissionSelector} from './PermissionSelector/PermissionSelector'
 import {WhitelistRecordForm} from '../../Components/WhitelistRecordForm/WhitelistRecordForm'
+import { getCurrentUser } from '../../Authentication/Authentication'
+
 
 export const WhitelistNewRecord = (): JSX.Element => {
     
@@ -24,6 +25,7 @@ export const WhitelistNewRecord = (): JSX.Element => {
 
             method: "post",
             url: NEW_WHITELIST_RECORD_URL,
+            headers: {"Authorization" : `Bearer ${getCurrentUser().jwtToken}`},
             data: newWhitelistRecord
         }).then((response: AxiosResponse) => {
         

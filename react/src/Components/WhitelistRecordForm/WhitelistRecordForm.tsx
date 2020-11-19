@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import './WhitelistRecordForm.css'
 import { WhitelistRecord } from '../../Types/Types'
 import {PermissionSelector} from '../../Views/WhitelistNewRecord/PermissionSelector/PermissionSelector'
+import { getCurrentUser } from '../../Authentication/Authentication'
+import { PermissionType } from '../../Enums/Enums'
 
 interface Props {
     editRecord: WhitelistRecord | null,
@@ -55,9 +58,10 @@ export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Eleme
                 </input>
             </div>
 
-            <PermissionSelector setOptionHook={setParkingReistrictionName}/>
+            {getCurrentUser().permission == PermissionType.MANAGER ? <PermissionSelector setOptionHook={setParkingReistrictionName}/> : <></>}
 
             <button onClick={() => formSubmission()}>{editRecord ? 'Update' : 'Add'}</button>
-        </div>  
+            {editRecord ? <button className="cancelButton" onClick={() => window.location.reload()}>Cancel</button> : <></>}
+        </div>
     )
 }

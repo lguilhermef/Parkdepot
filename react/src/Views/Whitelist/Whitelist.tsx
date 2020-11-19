@@ -3,10 +3,12 @@ import './Whitelist.css'
 import axios, {AxiosResponse} from 'axios'
 import { GET_WHITELIST_URL } from '../../Constants/Constants'
 import {WhitelistRecord} from '../../Types/Types'
-import { AppMessageType } from '../../Enums/Enums'
+import { AppMessageType, PermissionType } from '../../Enums/Enums'
 import { GET_WHITELIST_ERROR, DELETE_WHITELIST_ENTRY_URL, UPDATE_WHITELIST_RECORD_URL, WHITELIST_UPDATE_SUCCESS } from '../../Constants/Constants'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 import { WhitelistRecordForm } from '../../Components/WhitelistRecordForm/WhitelistRecordForm'
+import { getCurrentUser } from '../../Authentication/Authentication'
+
 
 
 export const Whitelist = (): JSX.Element => {
@@ -22,7 +24,8 @@ export const Whitelist = (): JSX.Element => {
         axios({
 
             method: "get",
-            url: GET_WHITELIST_URL
+            url: GET_WHITELIST_URL,
+            headers: {"Authorization" : `Bearer ${getCurrentUser().jwtToken}`}
         }).then((response: AxiosResponse) => {
             
             if (response.data){
@@ -41,6 +44,7 @@ export const Whitelist = (): JSX.Element => {
 
             method: "post",
             url: DELETE_WHITELIST_ENTRY_URL,
+            headers: {"Authorization" : `Bearer ${getCurrentUser().jwtToken}`},
             data: record
     
         }).then((response: AxiosResponse) => {
@@ -67,6 +71,7 @@ export const Whitelist = (): JSX.Element => {
 
             method: "put",
             url: UPDATE_WHITELIST_RECORD_URL,
+            headers: {"Authorization" : `Bearer ${getCurrentUser().jwtToken}`},
             data: editWhitelistRecord
         }).then((response: AxiosResponse) => {
         
@@ -84,10 +89,13 @@ export const Whitelist = (): JSX.Element => {
             <td>{record.plateOwner}</td>
             <td>{record.plateLicense}</td>
             <td>{record.parkingRestrictionName}</td>
-            <td>
-                <button className="tableDeleteButton" onClick={() => deleteEntry(record)}>Delete</button> 
+
+            {getCurrentUser().permission != PermissionType.GUEST ? 
+            (<td>
+                {getCurrentUser().permission == PermissionType.MANAGER ? <button className="tableDeleteButton" onClick={() => deleteEntry(record)}>Delete</button> : <></>}
                 <button className="tableEditButton" onClick={() => editEntry(record)}>Edit</button>
-            </td>
+            </td>) : null}
+
         </tr>
     );
 
@@ -99,7 +107,7 @@ export const Whitelist = (): JSX.Element => {
                     <th>Owner</th>
                     <th>Vehicle Plate</th>
                     <th>License Type</th>
-                    <th>Options</th>
+                    {getCurrentUser().permission != PermissionType.GUEST ? <th>Options</th> : null}
                 </tr>
             </thead>
             <tbody>

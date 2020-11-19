@@ -1,0 +1,7 @@
+.cancelButton{
+    border: 1px solid rgb(214, 56, 56);  
+}
+
+.cancelButton:hover{
+    color:rgb(214, 56, 56);
+}

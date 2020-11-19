@@ -15,3 +15,6 @@ export const WHITELIST_ENTRY_SUCCESS = "Plate succesfully added.";
 export const WHITELIST_ENTRY_ERROR = "The plate entry was refused: please, check if the plate is already registered.";
 export const WHITELIST_UPDATE_SUCCESS = "Whitelist record updated successfully!";
 export const GET_WHITELIST_ERROR = "A technical problem prevented the server from loading the whitelist.";
+
+
+export const DEFAULT_PARKING_RESTRICTION_NAME = "Default";
