@@ -6,26 +6,14 @@ import { NEW_WHITELIST_RECORD_URL, WHITELIST_ENTRY_SUCCESS, WHITELIST_ENTRY_ERRO
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 import { AppMessageType } from '../../Enums/Enums'
 import {PermissionSelector} from './PermissionSelector/PermissionSelector'
-import {RecordForm} from '../../Components/RecordForm/RecordForm'
+import {WhitelistRecordForm} from '../../Components/WhitelistRecordForm/WhitelistRecordForm'
 
-export const WhitelistNewRecord = () => {
+export const WhitelistNewRecord = (): JSX.Element => {
     
-    //const [plateLicense, setPlateLicense] = useState<string>("");
-    //const [parkingRestrictionName, setParkingReistrictionName] = useState<string>("");
-    //const [plateOwner, setPlateOwner] = useState<string>("");
     const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
-    //edit -> booleano; 
 
-
-
-    /*let newWhitelistEntry: WhitelistRecord = {
-        plateOwner: plateOwner,
-        plateLicense: plateLicense,
-        parkingRestrictionName: parkingRestrictionName,
-    };*/
-
-    const submitForm = (newWhitelistRecord: WhitelistRecord) => {
+    const submitForm = (newWhitelistRecord: WhitelistRecord): void => {
 
         if (newWhitelistRecord.plateLicense.length < 3 && newWhitelistRecord.plateOwner.length < 2){
             setShowErrorMessage(true);
@@ -48,7 +36,7 @@ export const WhitelistNewRecord = () => {
 
     return (
         <>
-            <RecordForm editRecord={null} submitForm={submitForm}/>
+            <WhitelistRecordForm editRecord={null} submitForm={submitForm}/>
 
             <AppMessage message={WHITELIST_ENTRY_SUCCESS} messageType={AppMessageType.SUCCESS} showMessage={showSuccessMessage} hideMessageHook={setShowSuccessMessage}/>
             <AppMessage message={WHITELIST_ENTRY_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>

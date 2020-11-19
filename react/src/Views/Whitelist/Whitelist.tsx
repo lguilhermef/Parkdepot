@@ -13,6 +13,7 @@ export const Whitelist = (): JSX.Element => {
 
     const [whitelist, setWhitelist] = useState<WhitelistRecord[]>();
     const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
+    const [showEditView, setShowEditView] = useState<boolean>(false);
 
     useEffect(() => {
 
@@ -55,6 +56,7 @@ export const Whitelist = (): JSX.Element => {
 
     const editEntry = (record: WhitelistRecord) => {
         
+
     }
 
     const renderTableData = (record: WhitelistRecord): JSX.Element => (
@@ -86,13 +88,17 @@ export const Whitelist = (): JSX.Element => {
             </tbody>
         </table>
     );
+
+    const renderWhitelist = () => (
+        <div className="form">
+            <h1>Whitelist</h1>
+            {renderTable()}
+        </div>
+    )
  
     return (
         <>
-            <div className="form">
-                <h1>Whitelist</h1>
-                {renderTable()}
-            </div>
+            {renderWhitelist()}
             <AppMessage message={GET_WHITELIST_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
         </>
     );

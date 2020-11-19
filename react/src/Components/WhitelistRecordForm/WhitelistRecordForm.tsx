@@ -7,7 +7,7 @@ interface Props {
     submitForm: Function
 }
 
-export const RecordForm = ({editRecord, submitForm }: Props): JSX.Element => {
+export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Element => {
 
     const [plateOwner, setPlateOwner] = useState<string>(editRecord ? editRecord.plateOwner : "");
     const [plateLicense, setPlateLicense] = useState<string>(editRecord ? editRecord.plateLicense : "");
