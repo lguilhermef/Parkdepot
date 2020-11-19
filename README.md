@@ -1,8 +1,8 @@
 # Parkdepot
 A one-week project app for managing a parking lot. 
  
-#TO RUN THE APP: 
-Run the Visual Studio file at Parkdepot-> Api->Parkdepot.sln |
+#TO RUN THE APP:  
+Run the Visual Studio file at Parkdepot-> Api->Parkdepot.sln 
 
 Run the command "Yarn start" at Parkdepot -> React 
  
