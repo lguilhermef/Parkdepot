@@ -27,22 +27,38 @@ namespace Parkdepot.Models.DAL
             return dbContext.WhitelistRecord.ToList();
         }
 
-        public void addWhitelistRecord(WhitelistRecord whitelistRecord)
+        public bool addWhitelistRecord(WhitelistRecord whitelistRecord)
         {
             dbContext.WhitelistRecord.Add(whitelistRecord);
             dbContext.SaveChanges();
+
+            return isPlatePersisted(whitelistRecord);
         }
 
-        public void updateWhitelistRecord (WhitelistRecord whitelistRecord)
+        public bool updateWhitelistRecord (WhitelistRecord whitelistRecord)
         {
             dbContext.Update(whitelistRecord);
             dbContext.SaveChanges();
+
+            return true;
         }
 
         public void removeRecord(WhitelistRecord whitelistRecord)
         {
             dbContext.Remove(whitelistRecord);
             dbContext.SaveChanges();
+        }
+
+        public bool isPlatePersisted(WhitelistRecord whitelistRecord)
+        {
+            return dbContext.WhitelistRecord.Where(wr => wr.PlateLicense == whitelistRecord.PlateLicense).Any();
+        }
+
+        public bool isPlateRepeated(WhitelistRecord whitelistRecord)
+        {
+            return dbContext.WhitelistRecord
+                .Where(wr => (wr.PlateLicense == whitelistRecord.PlateLicense) && (wr.Id != whitelistRecord.Id))
+                .Any();
         }
     }
 }

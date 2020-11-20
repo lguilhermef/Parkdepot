@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './WhitelistRecordForm.css'
 import { WhitelistRecord } from '../../Types/Types'
-import {PermissionSelector} from '../../Views/WhitelistNewRecord/PermissionSelector/PermissionSelector'
+import {PermissionSelector} from './PermissionSelector/PermissionSelector'
 import { getCurrentUser } from '../../Authentication/Authentication'
 import { PermissionType } from '../../Enums/Enums'
 import { AppMessageType } from '../../Enums/Enums'

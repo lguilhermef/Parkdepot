@@ -4,7 +4,7 @@ import axios, {AxiosResponse} from 'axios'
 import { GET_WHITELIST_URL } from '../../Constants/Constants'
 import {WhitelistRecord} from '../../Types/Types'
 import { AppMessageType, PermissionType } from '../../Enums/Enums'
-import { GET_WHITELIST_ERROR, DELETE_WHITELIST_ENTRY_URL, UPDATE_WHITELIST_RECORD_URL, WHITELIST_UPDATE_SUCCESS } from '../../Constants/Constants'
+import { GET_WHITELIST_ERROR, WHITELIST_UPDATE_ERROR, DELETE_WHITELIST_ENTRY_URL, UPDATE_WHITELIST_RECORD_URL, WHITELIST_UPDATE_SUCCESS } from '../../Constants/Constants'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 import { WhitelistRecordForm } from '../../Components/WhitelistRecordForm/WhitelistRecordForm'
 import { getCurrentUser } from '../../Authentication/Authentication'
@@ -17,6 +17,8 @@ export const Whitelist = (): JSX.Element => {
     const [editRecord, setEditRecord] = useState<WhitelistRecord | null>(null);
     const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
     const [showUpdateSuccessMessage, setShowUpdateSuccesMessage] = useState<boolean>(false);
+    const [showUpdateErrorMessage, setShowUpdateErrorMessage] = useState<boolean>(false);
+
 
     useEffect(() => {
 
@@ -73,7 +75,8 @@ export const Whitelist = (): JSX.Element => {
             window.location.reload();
         }).catch(() => {
 
-            setShowErrorMessage(true);
+            setShowUpdateErrorMessage(true);
+            setTimeout(() => window.location.reload(), 3000);
         });
     };
 
@@ -131,6 +134,7 @@ export const Whitelist = (): JSX.Element => {
             {showEditView ? renderWhitelistRecordForm() : renderWhitelist()}
             <AppMessage message={GET_WHITELIST_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
             <AppMessage message={WHITELIST_UPDATE_SUCCESS} messageType={AppMessageType.SUCCESS} showMessage={showUpdateSuccessMessage} hideMessageHook={setShowUpdateSuccesMessage}/>
+            <AppMessage message={WHITELIST_UPDATE_ERROR} messageType={AppMessageType.ERROR} showMessage={showUpdateErrorMessage} hideMessageHook={setShowUpdateErrorMessage}/>
         </>
     );
 }

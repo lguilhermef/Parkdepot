@@ -16,6 +16,7 @@ export const WHITELIST_ENTRY_ERROR = "The plate entry was refused: please, check
 export const WHITELIST_ENTRY_DATA_ERROR = "The Place Owner and Plate License must be between 3 and 13 characters."
 
 export const WHITELIST_UPDATE_SUCCESS = "Whitelist record updated successfully!";
+export const WHITELIST_UPDATE_ERROR = "The server found an error. Please, ensure that the Plate License is not repeated."
 
 export const GET_WHITELIST_ERROR = "A technical problem prevented the server from loading the whitelist.";
 

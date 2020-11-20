@@ -22,18 +22,26 @@ namespace Parkdepot.Services
             return _whitelistRepository.getWhitelist();
         } 
 
-        public void addWhitelistRecord (WhitelistRecord whitelistRecord)
+        public bool addWhitelistRecord (WhitelistRecord whitelistRecord)
         {
+            bool isPlatePersisted = _whitelistRepository.isPlatePersisted(whitelistRecord);
+
+            if (isPlatePersisted)
+            {
+                return false;
+            }
+
             if (whitelistRecord.ParkingRestrictionName == null || whitelistRecord.ParkingRestrictionName == "")
             {
                 whitelistRecord.ParkingRestrictionName = DEFAULT_RESTRICTION_NAME;
             }
 
-            _whitelistRepository.addWhitelistRecord(whitelistRecord);
+            return _whitelistRepository.addWhitelistRecord(whitelistRecord);
         }
-        public void updateWhitelistRecord(WhitelistRecord whitelistRecord)
+        public bool updateWhitelistRecord(WhitelistRecord whitelistRecord)
         {
-            _whitelistRepository.updateWhitelistRecord(whitelistRecord);
+            bool isPlateRepeated = _whitelistRepository.isPlateRepeated(whitelistRecord);
+            return isPlateRepeated ? false : _whitelistRepository.updateWhitelistRecord(whitelistRecord);
         } 
 
         public void removeRecord(WhitelistRecord whitelistRecord)
