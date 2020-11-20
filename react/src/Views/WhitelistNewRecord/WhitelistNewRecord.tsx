@@ -16,11 +16,6 @@ export const WhitelistNewRecord = (): JSX.Element => {
 
     const submitForm = (newWhitelistRecord: WhitelistRecord): void => {
 
-        if (newWhitelistRecord.plateLicense.length < 3 && newWhitelistRecord.plateOwner.length < 2){
-            setShowErrorMessage(true);
-            return;
-        }
-
         axios({
 
             method: "post",

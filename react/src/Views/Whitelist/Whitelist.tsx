@@ -10,7 +10,6 @@ import { WhitelistRecordForm } from '../../Components/WhitelistRecordForm/Whitel
 import { getCurrentUser } from '../../Authentication/Authentication'
 
 
-
 export const Whitelist = (): JSX.Element => {
 
     const [whitelist, setWhitelist] = useState<WhitelistRecord[]>();
@@ -62,11 +61,6 @@ export const Whitelist = (): JSX.Element => {
 
     const updateRecord = (editWhitelistRecord: WhitelistRecord): void => {
 
-        if (editWhitelistRecord.plateLicense.length < 3 && editWhitelistRecord.plateOwner.length < 2){
-            setShowErrorMessage(true);
-            return;
-        }
-
         axios({
 
             method: "put",
@@ -116,16 +110,16 @@ export const Whitelist = (): JSX.Element => {
         </table>
     );
 
-    const editEntry = (record: WhitelistRecord) => {
+    const editEntry = (record: WhitelistRecord): void => {
         setEditRecord(record);
         setShowEditView(true);
     }
 
-    const renderWhitelistRecordForm =() => (
+    const renderWhitelistRecordForm =(): JSX.Element => (
         <WhitelistRecordForm editRecord={editRecord} submitForm={updateRecord}/>
     )
 
-    const renderWhitelist = () => (
+    const renderWhitelist = (): JSX.Element => (
         <div className="form">
             <h1>Whitelist</h1>
             {renderTable()}

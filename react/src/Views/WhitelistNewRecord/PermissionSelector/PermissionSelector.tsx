@@ -8,7 +8,7 @@ interface Props {
     setOptionHook: Function
 }
 
-export const PermissionSelector = ({setOptionHook}: Props) => {
+export const PermissionSelector = ({setOptionHook}: Props): JSX.Element => {
 
     const [lstOptions, setLstOptions] = useState<ParkingRestriction[]>([]);
 
@@ -22,7 +22,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
             
             if (response.data){
 
-                let organizedOpts: ParkingRestriction[] = setDefaultOptionFirst(response.data, DEFAULT_PARKING_RESTRICTION_NAME);
+                let organizedOpts: ParkingRestriction[] = getDefaultOptionFirst(response.data, DEFAULT_PARKING_RESTRICTION_NAME);
                 setLstOptions(organizedOpts);
                 handleChange(organizedOpts[0]?.restrName);
             }
@@ -32,7 +32,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
         });
     }, []);
 
-    const setDefaultOptionFirst = (arrParkingRestriction :ParkingRestriction[], defaultOptionName: string) => {
+    const getDefaultOptionFirst = (arrParkingRestriction :ParkingRestriction[], defaultOptionName: string): ParkingRestriction[] => {
 
         let defaultOption: ParkingRestriction | undefined = arrParkingRestriction.find((option: ParkingRestriction) => option.restrName == defaultOptionName);
         let defaultlessArr: ParkingRestriction[] = arrParkingRestriction.filter((option: ParkingRestriction) => option.restrName != defaultOptionName);
@@ -44,7 +44,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
         return defaultOption ? defaultlessArr : arrParkingRestriction;
     };
     
-    const renderOptions = () => (
+    const renderOptions = (): JSX.Element[] => (
         
         lstOptions.map((option: ParkingRestriction) => (
 
@@ -52,7 +52,7 @@ export const PermissionSelector = ({setOptionHook}: Props) => {
         )
     ));
 
-    const handleChange = (option: string) => {
+    const handleChange = (option: string): void => {
         setOptionHook(option)
     };
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import './Login.css'
-import {LoginData} from '../../Types/Types'
+import {LoginData, User} from '../../Types/Types'
 import { LOGIN_URL, LOGIN_ERROR_MESSAGE } from '../../Constants/Constants'
 import { AppMessageType } from '../../Enums/Enums'
 import axios, { AxiosResponse } from 'axios'
-import { setCurrentUser } from '../Authentication'
+import { getCurrentUser, setCurrentUser } from '../Authentication'
 import Logo from '../../Assets/park-icon.png'
 import { AppMessage } from '../../Components/AppMessage/AppMessage'
 
@@ -25,7 +25,7 @@ export const Login = ({setLoginview} : Props): JSX.Element => {
 
     const loginUser = (data: LoginData) => {
 
-        const loginData = {
+        const loginData: LoginData = {
             email: data.email,
             pass: data.pass
         }
@@ -40,6 +40,8 @@ export const Login = ({setLoginview} : Props): JSX.Element => {
             
             if (response.data) {
                 setCurrentUser(response.data);
+                let user: User = getCurrentUser();
+                window.location.href = user.landingPage;
             }
 
         }).catch(() => {
@@ -50,7 +52,7 @@ export const Login = ({setLoginview} : Props): JSX.Element => {
     return (
         <>
             <div className="header">
-                <img className="headerLogo" src={Logo}></img><span className="logoLabel">Conceptual App</span>
+                <img className="headerLogo" src={Logo}></img><span className="logoLabel">1-Week Challenge App</span>
             </div>
 
             <div className="formContainer">
@@ -61,12 +63,11 @@ export const Login = ({setLoginview} : Props): JSX.Element => {
                     <div className="btnContainer">
                         <button onClick={() => loginUser(loginData)}>Login</button>
                     </div>
-                   {/* <span className="linkBtn" onClick={() => setLoginview(false)}>Register</span> */}
+                     {/*<span className="linkBtn" onClick={() => setLoginview(false)}>Register</span>*/}
                 </div>
             </div>
 
             <AppMessage message={LOGIN_ERROR_MESSAGE} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
-
         </>
     )
 }

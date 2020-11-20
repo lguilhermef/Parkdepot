@@ -4,23 +4,25 @@ import axios, { AxiosResponse } from 'axios'
 import { REGISTER_USER_URL } from '../../Constants/Constants'
 import { NewUserData } from '../../Types/Types'
 import { setCurrentUser } from '../Authentication'
+import Logo from '../../Assets/park-icon.png'
 
 
 export const Register = () => {
 
     const [email, setEmail] = useState<string>("");
     const [username, setUsername] = useState<string>("");
-    const [pass, setPass] = useState<string>("");
+    const [pass, setPassword] = useState<string>("");
+    const [landingPage, setLandingPage] = useState<string>("");
+
 
     let newUser: NewUserData = {
         email: email,
         username: username,
-        pass: pass
+        pass: pass,
+        landingPage: landingPage
     };
 
-    const handleChange: Function = (value: any, callback: Function): void => callback(value);
-
-    const registerUser: Function = () => {
+    const registerUser = () => {
         
         axios({
             method: "post",
@@ -36,21 +38,24 @@ export const Register = () => {
     };
 
     return (
-        <div>
-
-        <div className="login">
-            <h1 className="cardTitle">Register</h1>
-            <h3 className="label">Email</h3>
-            <input type="email" onChange={event => handleChange(event.target.value, setEmail)}></input>
-            <h3 className="label">Username</h3>
-            <input type="text" onChange={event => handleChange(event.target.value, setUsername)}></input>
-            <h3 className="label">Pass</h3>
-            <input type="password" onChange={event => handleChange(event.target.value, setPass)}></input>
-            <div className="btnContainer">
-                <button onClick={() => registerUser()}>Register</button>
+        <>
+            <div className="header">
+                <img className="headerLogo" src={Logo}></img><span className="logoLabel">Conceptual App</span>
             </div>
-        </div>
 
-    </div>
+            <div className="formContainer">
+                <div className="form">
+                    <h1 className="cardTitle">Register</h1>
+                    <input className="registerInput" type="email" placeholder="Email" onChange={event => setEmail(event.target.value)}></input>
+                    <input className="registerInput" type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}></input>
+                    <input className="registerInput" type="text" placeholder="Username" onChange={event => setUsername(event.target.value)}></input>
+                    <input className="registerInput" type="text" placeholder="Landing Page" onChange={event => setLandingPage(event.target.value)}></input>
+                    <div className="btnContainer">
+                        <button onClick={() => registerUser()}>Register</button>
+                    </div>
+                </div>
+            </div>
+
+        </>
     );
 }

@@ -6,13 +6,15 @@ export interface LoginData {
 export interface NewUserData { 
     email: string,
     username: string,
-    pass: string
+    pass: string,
+    landingPage: string
 };
 
 export interface User {
     email: string,
     username: string,
     permission: string,
+    landingPage: string,
     jwtToken: string
 };
 
@@ -23,6 +25,7 @@ export interface Permission {
 };
 
 export interface WhitelistRecord {
+    id: number | null,
     plateLicense: string,
     parkingRestrictionName: string,
     plateOwner: string
