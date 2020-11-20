@@ -17,9 +17,7 @@ export const Dashboard = (): JSX.Element => {
         <div className="dashboardContainer">
             <div className="header">
 
-                <Link to={"/"}>
-                    <img className="headerLogo" src={Logo}></img><span className="logoLabel">{currentUser.username}</span>
-                </Link>
+                <img className="headerLogo" src={Logo}></img><span className="logoLabel">{currentUser.username}</span>
                 
                 { currentUser.permission != PermissionType.GUEST ?
                 
