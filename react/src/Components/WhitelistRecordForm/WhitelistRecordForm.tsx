@@ -12,7 +12,7 @@ import { AppMessage } from '../../Components/AppMessage/AppMessage'
 interface Props {
     editRecord: WhitelistRecord | null,
     submitForm: Function
-}
+};
 
 export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Element => {
 
@@ -28,24 +28,32 @@ export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Eleme
         plateLicense: plateLicense,
         plateOwner: plateOwner,
         parkingRestrictionName: parkingRestrictionName
-    }
+    };
 
     const formSubmission = (): void => {
 
-        if (whitelistEntry.plateLicense.length < 3 || whitelistEntry.plateOwner.length < 3){
+        if (dataTooShort || dataTooLong){
             setShowDataErrorMessage(true);
             return;
-        }
+        };
 
         submitForm(whitelistEntry);
         clearForm();
+    };
+
+    const dataTooShort = (): boolean => {
+        return whitelistEntry.plateLicense.length < 3 || whitelistEntry.plateOwner.length < 3;
+    };
+
+    const dataTooLong = (): boolean => {
+        return whitelistEntry.plateLicense.length > 13 || whitelistEntry.plateOwner.length > 13;
     }
 
     const clearForm = (): void => {
         setPlateLicense("");
         setParkingReistrictionName("");
         setPlateOwner("");
-    }
+    };
         
     return (
 
@@ -78,5 +86,5 @@ export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Eleme
             </div>
             <AppMessage message={WHITELIST_ENTRY_DATA_ERROR} messageType={AppMessageType.ERROR} showMessage={showDataErrorMessage} hideMessageHook={setShowDataErrorMessage}/>
         </>
-    )
+    );
 }
