@@ -12,12 +12,15 @@ Users for testing purposes:
  
 #### email - Admin@pd.com 
 password - AdminPd 
+
 permissionLevel - highest 
  
 #### email - Employee@pd.com 
 password - EmployeePd 
+
 permissionLevel - medium 
  
 #### email - Guest@pd.com 
 password - GuestPd 
+
 permissionLevel - lowest 
