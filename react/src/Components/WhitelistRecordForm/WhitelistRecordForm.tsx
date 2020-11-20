@@ -32,7 +32,7 @@ export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Eleme
 
     const formSubmission = (): void => {
 
-        if (dataTooShort || dataTooLong){
+        if (dataTooShort() || dataTooLong()){
             setShowDataErrorMessage(true);
             return;
         };
@@ -42,11 +42,12 @@ export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Eleme
     };
 
     const dataTooShort = (): boolean => {
-        return whitelistEntry.plateLicense.length < 3 || whitelistEntry.plateOwner.length < 3;
+        console.log(whitelistEntry.plateLicense)
+        return (whitelistEntry.plateLicense.length < 3) || (whitelistEntry.plateOwner.length < 3);
     };
 
     const dataTooLong = (): boolean => {
-        return whitelistEntry.plateLicense.length > 13 || whitelistEntry.plateOwner.length > 13;
+        return (whitelistEntry.plateLicense.length > 13) || (whitelistEntry.plateOwner.length > 13);
     };
 
     const clearForm = (): void => {
