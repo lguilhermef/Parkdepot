@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 namespace Parkdepot.Models.DB
 {
@@ -23,14 +22,10 @@ namespace Parkdepot.Models.DB
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json")
-                .Build();
-
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=tcp:parkdepot.database.windows.net;Database=Parkdepot;User ID=misterQuintais;Password=Parkchallenge2020;");
             }
         }
 
@@ -94,15 +89,14 @@ namespace Parkdepot.Models.DB
 
             modelBuilder.Entity<WhitelistRecord>(entity =>
             {
-                entity.HasKey(e => e.PlateLicense);
-
-                entity.Property(e => e.PlateLicense)
-                    .HasColumnName("plate_license")
-                    .HasMaxLength(20)
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.ParkingRestrictionName)
                     .HasColumnName("parking_restriction_name")
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.PlateLicense)
+                    .HasColumnName("plate_license")
                     .HasMaxLength(20);
 
                 entity.Property(e => e.PlateOwner)
@@ -113,7 +107,7 @@ namespace Parkdepot.Models.DB
                 entity.HasOne(d => d.ParkingRestrictionNameNavigation)
                     .WithMany(p => p.WhitelistRecord)
                     .HasForeignKey(d => d.ParkingRestrictionName)
-                    .HasConstraintName("FK__Whitelist__parki__6C190EBB");
+                    .HasConstraintName("FK__Whitelist__parki__71D1E811");
             });
         }
     }

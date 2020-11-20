@@ -17,9 +17,9 @@ namespace Parkdepot.Models.DAL
         }
 
 
-        public WhitelistRecord getRecordByPlateLicense(string plateLicense)
+        public WhitelistRecord getRecordByPlateLicense(int whitelistRecordId)
         {
-            return dbContext.WhitelistRecord.Where(r => r.PlateLicense == plateLicense).FirstOrDefault();
+            return dbContext.WhitelistRecord.Where(r => r.Id == whitelistRecordId).FirstOrDefault();
         }
 
         public List<WhitelistRecord> getWhitelist()

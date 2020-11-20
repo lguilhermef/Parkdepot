@@ -10,6 +10,7 @@ namespace Parkdepot.Services
     public class WhitelistRecordService
     {
         private WhitelistRecordRepository _whitelistRepository;
+        private const String DEFAULT_RESTRICTION_NAME = "Default";
 
         public WhitelistRecordService ()
         {
@@ -23,6 +24,11 @@ namespace Parkdepot.Services
 
         public void addWhitelistRecord (WhitelistRecord whitelistRecord)
         {
+            if (whitelistRecord.ParkingRestrictionName == null || whitelistRecord.ParkingRestrictionName == "")
+            {
+                whitelistRecord.ParkingRestrictionName = DEFAULT_RESTRICTION_NAME;
+            }
+
             _whitelistRepository.addWhitelistRecord(whitelistRecord);
         }
         public void updateWhitelistRecord(WhitelistRecord whitelistRecord)
