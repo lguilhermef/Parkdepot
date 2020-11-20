@@ -1,14 +1,15 @@
 import React, { ChangeEvent, useState, useEffect } from 'react'
 import axios, {AxiosResponse} from 'axios'
-import { ParkingRestriction } from '../../../Types/Types'
+import { ParkingRestriction, WhitelistRecord } from '../../../Types/Types'
 import { GET_PARKING_PERMISSION_LST_URL, DEFAULT_PARKING_RESTRICTION_NAME } from '../../../Constants/Constants'
 import { getCurrentUser } from '../../../Authentication/Authentication'
 
 interface Props {
-    setOptionHook: Function
+    setOptionHook: Function,
+    editRecord: WhitelistRecord | null,
 }
 
-export const PermissionSelector = ({setOptionHook}: Props): JSX.Element => {
+export const PermissionSelector = ({setOptionHook, editRecord}: Props): JSX.Element => {
 
     const [lstOptions, setLstOptions] = useState<ParkingRestriction[]>([]);
 
@@ -22,7 +23,7 @@ export const PermissionSelector = ({setOptionHook}: Props): JSX.Element => {
             
             if (response.data){
 
-                let organizedOpts: ParkingRestriction[] = getDefaultOptionFirst(response.data, DEFAULT_PARKING_RESTRICTION_NAME);
+                let organizedOpts: ParkingRestriction[] =  getFirstOption(response.data);
                 setLstOptions(organizedOpts);
                 handleChange(organizedOpts[0]?.restrName);
             }
@@ -32,8 +33,24 @@ export const PermissionSelector = ({setOptionHook}: Props): JSX.Element => {
         });
     }, []);
 
-    const getDefaultOptionFirst = (arrParkingRestriction :ParkingRestriction[], defaultOptionName: string): ParkingRestriction[] => {
+    const getFirstOption = (arrParkingRestriction:ParkingRestriction[]): ParkingRestriction[] => {
+        return editRecord ? getEditRecordOptionFirst(arrParkingRestriction) : getDefaultOptionFirst(arrParkingRestriction, DEFAULT_PARKING_RESTRICTION_NAME);
+    }
 
+    const getEditRecordOptionFirst = (arrParkingRestriction:ParkingRestriction[]): ParkingRestriction[] => {
+
+        let defaultOption: ParkingRestriction | undefined = arrParkingRestriction.find((option: ParkingRestriction) => option.restrName == editRecord?.parkingRestrictionName);
+        let editOptionlessArr: ParkingRestriction[] = arrParkingRestriction.filter((option: ParkingRestriction) => option.restrName != defaultOption?.restrName);
+
+        if (defaultOption) {
+            editOptionlessArr.unshift(defaultOption);
+        }
+
+        return defaultOption ? editOptionlessArr : arrParkingRestriction;
+    };
+
+    const getDefaultOptionFirst = (arrParkingRestriction :ParkingRestriction[], defaultOptionName: string): ParkingRestriction[] => {
+        //TODO: Boiler Plate!!
         let defaultOption: ParkingRestriction | undefined = arrParkingRestriction.find((option: ParkingRestriction) => option.restrName == defaultOptionName);
         let defaultlessArr: ParkingRestriction[] = arrParkingRestriction.filter((option: ParkingRestriction) => option.restrName != defaultOptionName);
 

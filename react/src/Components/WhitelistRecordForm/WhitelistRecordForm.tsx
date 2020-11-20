@@ -79,7 +79,7 @@ export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Eleme
                     </input>
                 </div>
 
-                {getCurrentUser().permission == PermissionType.MANAGER ? <PermissionSelector setOptionHook={setParkingReistrictionName}/> : <></>}
+                {getCurrentUser().permission == PermissionType.MANAGER ? <PermissionSelector editRecord={editRecord ? editRecord : null} setOptionHook={setParkingReistrictionName}/> : <></>}
 
                 <button onClick={() => formSubmission()}>{editRecord ? 'Update' : 'Add'}</button>
                 {editRecord ? <button className="cancelButton" onClick={() => window.location.reload()}>Cancel</button> : <></>}
