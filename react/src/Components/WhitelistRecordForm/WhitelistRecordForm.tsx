@@ -47,7 +47,7 @@ export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Eleme
 
     const dataTooLong = (): boolean => {
         return whitelistEntry.plateLicense.length > 13 || whitelistEntry.plateOwner.length > 13;
-    }
+    };
 
     const clearForm = (): void => {
         setPlateLicense("");
@@ -56,7 +56,6 @@ export const WhitelistRecordForm = ({editRecord, submitForm }: Props): JSX.Eleme
     };
         
     return (
-
         <>
             <div className="form">
                 <h1>Whitelist Entry</h1>

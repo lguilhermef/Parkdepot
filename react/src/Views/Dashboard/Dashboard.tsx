@@ -46,5 +46,5 @@ export const Dashboard = (): JSX.Element => {
                 </Switch>
             </div>
         </div>
-    )
+    );
 }

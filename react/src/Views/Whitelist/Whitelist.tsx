@@ -33,7 +33,7 @@ export const Whitelist = (): JSX.Element => {
         
         }).catch(e => {
             setShowErrorMessage(true);
-        })
+        });
             
     }, []);
 
@@ -57,7 +57,7 @@ export const Whitelist = (): JSX.Element => {
             //TODO: Customize message to reflect the failure to delete an entry;
             setShowErrorMessage(true);
         });
-    }
+    };
 
     const updateRecord = (editWhitelistRecord: WhitelistRecord): void => {
 
@@ -75,7 +75,7 @@ export const Whitelist = (): JSX.Element => {
 
             setShowErrorMessage(true);
         });
-    }
+    };
 
     const renderTableData = (record: WhitelistRecord): JSX.Element => (
 
@@ -93,7 +93,7 @@ export const Whitelist = (): JSX.Element => {
         </tr>
     );
 
-    const renderTable = ():JSX.Element => (
+    const renderTable = (): JSX.Element => (
 
         <table className="form tableForm">
             <thead>
@@ -113,18 +113,18 @@ export const Whitelist = (): JSX.Element => {
     const editEntry = (record: WhitelistRecord): void => {
         setEditRecord(record);
         setShowEditView(true);
-    }
+    };
 
     const renderWhitelistRecordForm =(): JSX.Element => (
         <WhitelistRecordForm editRecord={editRecord} submitForm={updateRecord}/>
-    )
+    );
 
     const renderWhitelist = (): JSX.Element => (
         <div className="form">
             <h1>Whitelist</h1>
             {renderTable()}
         </div>
-    )
+    );
  
     return (
         <>

@@ -29,7 +29,7 @@ export const WhitelistNewRecord = (): JSX.Element => {
 
             setShowErrorMessage(true);
         });
-    }
+    };
 
     return (
         <>
@@ -38,5 +38,5 @@ export const WhitelistNewRecord = (): JSX.Element => {
             <AppMessage message={WHITELIST_ENTRY_SUCCESS} messageType={AppMessageType.SUCCESS} showMessage={showSuccessMessage} hideMessageHook={setShowSuccessMessage}/>
             <AppMessage message={WHITELIST_ENTRY_ERROR} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
         </>
-    )
+    );
 }

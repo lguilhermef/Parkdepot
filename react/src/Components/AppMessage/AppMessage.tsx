@@ -7,7 +7,7 @@ interface AppMessage {
     messageType: AppMessageType,
     showMessage: boolean,
     hideMessageHook: Function
-}
+};
 
 export const AppMessage = ({message, messageType, showMessage, hideMessageHook}: AppMessage): JSX.Element => {
     

@@ -21,16 +21,16 @@ export const Login = ({setLoginview} : Props): JSX.Element => {
     let loginData: LoginData = {
         email: email,
         pass: password
-    }
+    };
 
-    const loginUser = (data: LoginData) => {
+    const loginUser = (data: LoginData): void => {
 
         const loginData: LoginData = {
             email: data.email,
             pass: data.pass
         }
     
-        return axios({
+        axios({
     
             method: "post",
             url: LOGIN_URL,
@@ -47,7 +47,7 @@ export const Login = ({setLoginview} : Props): JSX.Element => {
         }).catch(() => {
             setShowErrorMessage(true);            
         });
-    }
+    };
 
     return (
         <>
@@ -69,5 +69,5 @@ export const Login = ({setLoginview} : Props): JSX.Element => {
 
             <AppMessage message={LOGIN_ERROR_MESSAGE} messageType={AppMessageType.ERROR} showMessage={showErrorMessage} hideMessageHook={setShowErrorMessage}/>
         </>
-    )
+    );
 }
