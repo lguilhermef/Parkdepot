@@ -39,6 +39,7 @@ namespace Parkdepot.Controllers
                 Email = loggedUser.Email,
                 Username = loggedUser.Username,
                 Permission = loggedUser.Permission,
+                LandingPage = loggedUser.LandingPage,
                 JwtToken = userToken
             };
 

@@ -9,6 +9,7 @@ namespace Parkdepot.Models.DB
         public string Pass { get; set; }
         public string Username { get; set; }
         public string Permission { get; set; }
+        public string LandingPage { get; set; }
 
         public UserPermission PermissionNavigation { get; set; }
     }

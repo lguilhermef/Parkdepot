@@ -40,6 +40,11 @@ namespace Parkdepot.Models.DB
                     .HasMaxLength(100)
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.LandingPage)
+                    .IsRequired()
+                    .HasColumnName("landing_page")
+                    .HasMaxLength(200);
+
                 entity.Property(e => e.Pass)
                     .IsRequired()
                     .HasColumnName("pass");
@@ -56,7 +61,7 @@ namespace Parkdepot.Models.DB
                 entity.HasOne(d => d.PermissionNavigation)
                     .WithMany(p => p.ParkdepotUser)
                     .HasForeignKey(d => d.Permission)
-                    .HasConstraintName("FK__Parkdepot__permi__619B8048");
+                    .HasConstraintName("FK__Parkdepot__permi__74AE54BC");
             });
 
             modelBuilder.Entity<ParkingRestriction>(entity =>
