@@ -2,8 +2,9 @@
 A one-week project app for managing a parking lot. 
  
 ## TO RUN THE APP:  
-Run the Visual Studio file at Parkdepot-> Api->Parkdepot.sln 
-Run the command "Yarn start" at Parkdepot -> React 
+Run the Visual Studio file at Parkdepot-> Api-> Parkdepot.sln
+
+Execute the command "Yarn start" at Parkdepot -> React 
 ### Ensure you are on branch MASTER 
  
 ## USERS DATA 
